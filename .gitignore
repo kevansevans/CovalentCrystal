@@ -20,3 +20,5 @@ bin/Main.exp
 bin/Main.lib
 
 bin/Options.txt
+
+*.gbc

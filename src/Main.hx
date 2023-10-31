@@ -1,12 +1,18 @@
 package;
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//Covalent Crystal builder tool thing
+////////////////////////////////////////////////////////////////////////////////////////////////////
+import haxe.crypto.Md5;
 import sys.FileSystem;
-
+import sys.io.File;
 import setup.GZDoom;
 
 /**
  * ...
  * @author Kaelan
+ * 
+ * To do: Kev, clean up the throws. You knoow you're better than this.
  */
 class Main 
 {
@@ -42,13 +48,65 @@ class Main
 	function runSetup() 
 	{
 		Sys.println("Running first time setup");
-		Sys.println("Downloading latest GZDoom...");
-		FileSystem.createDirectory('./GZDoom');
-		GZDoom.download();
+		if (!FileSystem.exists("./GZDoom")) 
+		{
+			Sys.println("Downloading latest GZDoom...");
+			FileSystem.createDirectory('./GZDoom');
+			GZDoom.download();
+		}
 		if (!FileSystem.isDirectory('./wad'))
 		{
 			throw "Missing wad folder. Did you download the game correctly?";
 		}
+		
+		var files = FileSystem.readDirectory('./');
+		var romfound:Bool = false;
+		var rompaths:Map<String, String> = new Map();
+		
+		for (file in files)
+		{
+			if (file.lastIndexOf('.gbc') != -1) 
+			{
+				romfound = true;
+				
+				var filebytes = File.getBytes('./' + file);
+				var hash = Md5.make(filebytes);
+				
+				rompaths[hash.toHex()] = file;
+			}
+		}
+		
+		if (!romfound)
+		{
+			throw "Covalent Crystal needs a valid Pokemon Crystal ROM in order to work!";
+		}
+		
+		if (rompaths[CrystalHashes.ROM_USAEUROPE_REV] != null) extractRom(rompaths[CrystalHashes.ROM_USAEUROPE_REV], CrystalHashes.ROM_USAEUROPE_REV);
+		if (rompaths[CrystalHashes.ROM_USAEUROPE] != null) extractRom(rompaths[CrystalHashes.ROM_USAEUROPE], CrystalHashes.ROM_USAEUROPE);
+		if (rompaths[CrystalHashes.ROM_JAPAN] != null) extractRom(rompaths[CrystalHashes.ROM_JAPAN], CrystalHashes.ROM_JAPAN);
 	}
 	
+	function extractRom(_path:String, _ver:CrystalHashes)
+	{
+		switch (_ver)
+		{
+			case CrystalHashes.ROM_JAPAN:
+				Sys.println(_ver);
+				Sys.println("Pocket Monsters - Crystal Version (Japan)");
+			case CrystalHashes.ROM_USAEUROPE:
+				Sys.println(_ver);
+				Sys.println("Pokemon - Crystal Version (USA, Europe)");
+			case CrystalHashes.ROM_USAEUROPE_REV:
+				Sys.println(_ver);
+				Sys.println("Pokemon - Crystal Version (USA, Europe) (Rev A)");
+		}
+	}
+	
+}
+
+enum abstract CrystalHashes(String) from String to String
+{
+	var ROM_JAPAN:String = "9c3ae66bffb28ea8ed2896822da02992";
+	var ROM_USAEUROPE:String = "9f2922b235a5eeb78d65594e82ef5dde";
+	var ROM_USAEUROPE_REV:String = "301899b8087289a6436b0a241fbbb474";
 }
