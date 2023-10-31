@@ -1,0 +1,7 @@
+Class PK_Ability_unburden : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "unburden";
+	}
+}

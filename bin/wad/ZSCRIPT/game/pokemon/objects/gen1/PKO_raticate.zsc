@@ -1,0 +1,9 @@
+Class PKO_raticate : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "raticate";
+		PK_Pokemon.dexnum 20;
+		PK_Pokemon.PrimaryType normal;
+	}
+}

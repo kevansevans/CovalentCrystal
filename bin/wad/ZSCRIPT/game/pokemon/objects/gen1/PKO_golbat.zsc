@@ -1,0 +1,10 @@
+Class PKO_golbat : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "golbat";
+		PK_Pokemon.dexnum 42;
+		PK_Pokemon.PrimaryType poison;
+		PK_Pokemon.SecondaryType flying;
+	}
+}

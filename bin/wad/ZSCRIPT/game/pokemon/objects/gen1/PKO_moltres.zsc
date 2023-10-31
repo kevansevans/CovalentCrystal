@@ -1,0 +1,10 @@
+Class PKO_moltres : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "moltres";
+		PK_Pokemon.dexnum 146;
+		PK_Pokemon.PrimaryType fire;
+		PK_Pokemon.SecondaryType flying;
+	}
+}

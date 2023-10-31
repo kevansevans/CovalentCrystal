@@ -1,0 +1,10 @@
+Class PKO_dragonite : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "dragonite";
+		PK_Pokemon.dexnum 149;
+		PK_Pokemon.PrimaryType dragon;
+		PK_Pokemon.SecondaryType flying;
+	}
+}

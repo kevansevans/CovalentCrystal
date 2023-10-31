@@ -1,0 +1,9 @@
+Class PKO_weezing : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "weezing";
+		PK_Pokemon.dexnum 110;
+		PK_Pokemon.PrimaryType poison;
+	}
+}

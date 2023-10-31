@@ -1,0 +1,10 @@
+Class PKO_paras : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "paras";
+		PK_Pokemon.dexnum 46;
+		PK_Pokemon.PrimaryType bug;
+		PK_Pokemon.SecondaryType grass;
+	}
+}

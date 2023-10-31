@@ -1,0 +1,10 @@
+Class PKO_haunter : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "haunter";
+		PK_Pokemon.dexnum 93;
+		PK_Pokemon.PrimaryType ghost;
+		PK_Pokemon.SecondaryType poison;
+	}
+}

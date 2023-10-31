@@ -1,0 +1,10 @@
+Class PKO_zapdos : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "zapdos";
+		PK_Pokemon.dexnum 145;
+		PK_Pokemon.PrimaryType electric;
+		PK_Pokemon.SecondaryType flying;
+	}
+}

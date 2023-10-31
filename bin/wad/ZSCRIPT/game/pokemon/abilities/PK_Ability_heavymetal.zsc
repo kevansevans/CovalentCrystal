@@ -1,0 +1,7 @@
+Class PK_Ability_heavymetal : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "heavy-metal";
+	}
+}

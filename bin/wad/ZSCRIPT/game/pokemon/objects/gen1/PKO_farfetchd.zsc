@@ -1,0 +1,10 @@
+Class PKO_farfetchd : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "farfetchd";
+		PK_Pokemon.dexnum 83;
+		PK_Pokemon.PrimaryType normal;
+		PK_Pokemon.SecondaryType flying;
+	}
+}

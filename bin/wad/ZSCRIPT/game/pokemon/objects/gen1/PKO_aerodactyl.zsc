@@ -1,0 +1,10 @@
+Class PKO_aerodactyl : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "aerodactyl";
+		PK_Pokemon.dexnum 142;
+		PK_Pokemon.PrimaryType rock;
+		PK_Pokemon.SecondaryType flying;
+	}
+}

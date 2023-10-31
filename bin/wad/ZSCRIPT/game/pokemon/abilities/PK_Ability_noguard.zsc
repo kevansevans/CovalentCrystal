@@ -1,0 +1,7 @@
+Class PK_Ability_noguard : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "no-guard";
+	}
+}

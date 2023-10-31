@@ -1,0 +1,7 @@
+Class PK_Ability_sandspit : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "sand-spit";
+	}
+}

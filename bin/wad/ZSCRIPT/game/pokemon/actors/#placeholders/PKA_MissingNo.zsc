@@ -1,0 +1,9 @@
+Class PKA_MissingNo : PKO_MissingNo
+{
+	States
+	{
+		Spawn:
+			MSGN A 1 Bright;
+			Loop;
+	}
+}

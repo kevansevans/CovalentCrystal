@@ -1,0 +1,13 @@
+intro/whoosh "SOUNDS/Title sequence/whoosh.ogg"
+intro/bounce "SOUNDS/Title sequence/bounce.ogg"
+intro/blink "SOUNDS/Title sequence/blink.ogg"
+intro/warp "SOUNDS/Title sequence/warp.ogg"
+intro/sparkle "SOUNDS/Title sequence/sparkle.ogg"
+intro/pulsea "SOUNDS/Title sequence/pulse_a.ogg"
+intro/pulseb "SOUNDS/Title sequence/pulse_b.ogg"
+intro/pulsec "SOUNDS/Title sequence/pulse_c.ogg"
+intro/dash "SOUNDS/Title sequence/dash.ogg"
+intro/popup "SOUNDS/Title sequence/popup.ogg"
+intro/pulsed "SOUNDS/Title sequence/pulse_d.ogg"
+
+interactive/gooutside "SOUNDS/Interactive/GO_OUT.wav"

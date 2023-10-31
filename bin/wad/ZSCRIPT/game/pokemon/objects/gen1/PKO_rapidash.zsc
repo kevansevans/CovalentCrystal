@@ -1,0 +1,9 @@
+Class PKO_rapidash : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "rapidash";
+		PK_Pokemon.dexnum 78;
+		PK_Pokemon.PrimaryType fire;
+	}
+}

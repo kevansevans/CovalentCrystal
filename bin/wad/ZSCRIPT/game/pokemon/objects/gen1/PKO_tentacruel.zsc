@@ -1,0 +1,10 @@
+Class PKO_tentacruel : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "tentacruel";
+		PK_Pokemon.dexnum 73;
+		PK_Pokemon.PrimaryType water;
+		PK_Pokemon.SecondaryType poison;
+	}
+}

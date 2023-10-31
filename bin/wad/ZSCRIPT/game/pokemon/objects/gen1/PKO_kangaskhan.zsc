@@ -1,0 +1,9 @@
+Class PKO_kangaskhan : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "kangaskhan";
+		PK_Pokemon.dexnum 115;
+		PK_Pokemon.PrimaryType normal;
+	}
+}

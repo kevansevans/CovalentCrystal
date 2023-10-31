@@ -1,0 +1,9 @@
+Class PKO_vulpix : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "vulpix";
+		PK_Pokemon.dexnum 37;
+		PK_Pokemon.PrimaryType fire;
+	}
+}

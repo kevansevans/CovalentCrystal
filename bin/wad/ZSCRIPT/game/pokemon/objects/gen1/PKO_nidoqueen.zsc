@@ -1,0 +1,10 @@
+Class PKO_nidoqueen : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "nidoqueen";
+		PK_Pokemon.dexnum 31;
+		PK_Pokemon.PrimaryType poison;
+		PK_Pokemon.SecondaryType ground;
+	}
+}

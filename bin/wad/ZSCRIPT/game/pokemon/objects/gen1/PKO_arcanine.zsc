@@ -1,0 +1,9 @@
+Class PKO_arcanine : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "arcanine";
+		PK_Pokemon.dexnum 59;
+		PK_Pokemon.PrimaryType fire;
+	}
+}

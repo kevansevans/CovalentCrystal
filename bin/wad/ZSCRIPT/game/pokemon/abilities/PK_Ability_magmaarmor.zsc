@@ -1,0 +1,7 @@
+Class PK_Ability_magmaarmor : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "magma-armor";
+	}
+}

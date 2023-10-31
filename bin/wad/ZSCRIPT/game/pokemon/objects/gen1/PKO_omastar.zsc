@@ -1,0 +1,10 @@
+Class PKO_omastar : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "omastar";
+		PK_Pokemon.dexnum 139;
+		PK_Pokemon.PrimaryType rock;
+		PK_Pokemon.SecondaryType water;
+	}
+}

@@ -1,0 +1,9 @@
+Class PKO_mankey : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "mankey";
+		PK_Pokemon.dexnum 56;
+		PK_Pokemon.PrimaryType fighting;
+	}
+}

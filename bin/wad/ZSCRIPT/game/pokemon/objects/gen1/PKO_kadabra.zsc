@@ -1,0 +1,9 @@
+Class PKO_kadabra : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "kadabra";
+		PK_Pokemon.dexnum 64;
+		PK_Pokemon.PrimaryType psychic;
+	}
+}

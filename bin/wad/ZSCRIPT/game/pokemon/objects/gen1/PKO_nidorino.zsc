@@ -1,0 +1,9 @@
+Class PKO_nidorino : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "nidorino";
+		PK_Pokemon.dexnum 33;
+		PK_Pokemon.PrimaryType poison;
+	}
+}

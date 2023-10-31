@@ -1,0 +1,10 @@
+Class PKO_pidgeot : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "pidgeot";
+		PK_Pokemon.dexnum 18;
+		PK_Pokemon.PrimaryType normal;
+		PK_Pokemon.SecondaryType flying;
+	}
+}

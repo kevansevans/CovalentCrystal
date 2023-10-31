@@ -1,0 +1,10 @@
+Class PKO_bellsprout : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "bellsprout";
+		PK_Pokemon.dexnum 69;
+		PK_Pokemon.PrimaryType grass;
+		PK_Pokemon.SecondaryType poison;
+	}
+}

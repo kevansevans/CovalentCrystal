@@ -1,0 +1,10 @@
+Class PKO_charizard : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "charizard";
+		PK_Pokemon.dexnum 6;
+		PK_Pokemon.PrimaryType fire;
+		PK_Pokemon.SecondaryType flying;
+	}
+}

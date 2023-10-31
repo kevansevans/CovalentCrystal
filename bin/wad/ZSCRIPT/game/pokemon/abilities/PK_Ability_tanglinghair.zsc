@@ -1,0 +1,7 @@
+Class PK_Ability_tanglinghair : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "tangling-hair";
+	}
+}

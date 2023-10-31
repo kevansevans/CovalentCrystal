@@ -1,0 +1,10 @@
+Class PKO_jynx : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "jynx";
+		PK_Pokemon.dexnum 124;
+		PK_Pokemon.PrimaryType ice;
+		PK_Pokemon.SecondaryType psychic;
+	}
+}

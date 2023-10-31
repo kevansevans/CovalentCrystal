@@ -1,0 +1,119 @@
+Class PK_PlayerPawn : PlayerPawn
+{
+	Default
+	{
+		Player.DisplayName "Crystal";
+		Player.ViewHeight 1;
+		Player.ViewBob 0;
+		
+		Height 16;
+		Radius 16;
+		
+		+NoGravity;
+		+NoClip;
+	}
+	
+	override void BeginPlay()
+	{
+		A_SetSize(4, 4);
+	}
+	
+	Actor avatar;
+}
+
+Class PK_PlayerAvatar : PK_BaseNPC
+{
+	PK_PlayerPawn player;
+	
+	const radius = 64.0;
+	
+	Default
+	{
+		Speed 1;
+		
+		Radius 6;
+		Height 16;
+		
+		+SlidesOnWalls;
+		+Solid;
+	}
+	
+	double r;
+	
+	override void beginPlay()
+	{
+		r = radius;
+		
+		prevDirection = -1;
+		
+		facing = "east";
+		activity = "facing";
+	}
+	
+	override void Tick()
+	{
+		Super.Tick();
+		
+		if (!player) return;
+		
+		FLIneTraceData shot;
+		self.linetrace(player.angle, -64, player.pitch, TRF_ThruActors | TRF_ThruBlock, 24, 0, 0, shot);
+		
+		let loc = shot.hitLocation;
+		
+		double sensitivity = 1.0;
+		
+		double xyr = radius * cos(player.pitch);
+		
+		double xpos = self.pos.x - cos(player.angle) * xyr;
+		double ypos = self.pos.y - sin(player.angle) * xyr;
+		double zpos = self.pos.z - sin(-player.pitch) * r;
+		
+		player.setOrigin((xpos, ypos, zpos), true);
+		
+		r -= sensitivity;
+		xyr = cos(player.pitch) * r;
+		
+		if (r < radius) r += sensitivity;
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+		Facing.East:
+			PWMA C 1;
+			Loop;
+		Moving.East:
+			PWMA C 3;
+			PWMA D 7;
+			PWMA C 3;
+			goto Facing.east;
+		Facing.West:
+			PWMA A 1;
+			Loop;
+		Moving.West:
+			PWMA A 3;
+			PWMA B 7;
+			PWMA A 3;
+			goto Facing.West;
+		Facing.South:
+			PSMA E 1;
+			Loop;
+		Moving.South:
+			PSMA E 3;
+			PSMA F 7;
+			PSMA E 3;
+			PSMA G 7;
+			goto Facing.South;
+		Facing.North:
+			PNMA H 1;
+			Loop;
+		Moving.North:
+			PNMA H 3;
+			PNMA I 7;
+			PNMA H 3;
+			PNMA J 7;
+			goto Facing.North;
+	}
+}

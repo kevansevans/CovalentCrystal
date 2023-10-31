@@ -1,0 +1,7 @@
+Class PK_Ability_roughskin : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "rough-skin";
+	}
+}

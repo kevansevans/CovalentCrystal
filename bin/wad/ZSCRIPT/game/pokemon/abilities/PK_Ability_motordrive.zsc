@@ -1,0 +1,7 @@
+Class PK_Ability_motordrive : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "motor-drive";
+	}
+}

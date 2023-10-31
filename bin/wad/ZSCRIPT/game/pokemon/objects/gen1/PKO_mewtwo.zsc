@@ -1,0 +1,9 @@
+Class PKO_mewtwo : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "mewtwo";
+		PK_Pokemon.dexnum 150;
+		PK_Pokemon.PrimaryType psychic;
+	}
+}

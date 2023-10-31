@@ -1,0 +1,7 @@
+Class PK_Ability_prismarmor : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "prism-armor";
+	}
+}

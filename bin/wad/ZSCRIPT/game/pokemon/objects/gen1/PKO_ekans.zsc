@@ -1,0 +1,9 @@
+Class PKO_ekans : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "ekans";
+		PK_Pokemon.dexnum 23;
+		PK_Pokemon.PrimaryType poison;
+	}
+}

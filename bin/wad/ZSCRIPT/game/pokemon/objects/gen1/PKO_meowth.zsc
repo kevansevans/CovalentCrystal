@@ -1,0 +1,9 @@
+Class PKO_meowth : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "meowth";
+		PK_Pokemon.dexnum 52;
+		PK_Pokemon.PrimaryType normal;
+	}
+}

@@ -1,0 +1,9 @@
+Class PKO_diglett : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "diglett";
+		PK_Pokemon.dexnum 50;
+		PK_Pokemon.PrimaryType ground;
+	}
+}

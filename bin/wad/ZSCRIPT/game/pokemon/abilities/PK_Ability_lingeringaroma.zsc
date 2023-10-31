@@ -1,0 +1,7 @@
+Class PK_Ability_lingeringaroma : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "lingering-aroma";
+	}
+}

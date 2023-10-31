@@ -1,0 +1,7 @@
+Class PK_Ability_defiant : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "defiant";
+	}
+}

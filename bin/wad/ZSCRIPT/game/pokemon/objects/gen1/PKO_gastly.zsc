@@ -1,0 +1,10 @@
+Class PKO_gastly : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "gastly";
+		PK_Pokemon.dexnum 92;
+		PK_Pokemon.PrimaryType ghost;
+		PK_Pokemon.SecondaryType poison;
+	}
+}

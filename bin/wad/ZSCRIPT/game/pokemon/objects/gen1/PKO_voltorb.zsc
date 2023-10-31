@@ -1,0 +1,9 @@
+Class PKO_voltorb : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "voltorb";
+		PK_Pokemon.dexnum 100;
+		PK_Pokemon.PrimaryType electric;
+	}
+}

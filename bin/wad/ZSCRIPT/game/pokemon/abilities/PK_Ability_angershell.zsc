@@ -1,0 +1,7 @@
+Class PK_Ability_angershell : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "anger-shell";
+	}
+}

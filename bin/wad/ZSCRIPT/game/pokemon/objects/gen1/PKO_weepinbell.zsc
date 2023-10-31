@@ -1,0 +1,10 @@
+Class PKO_weepinbell : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "weepinbell";
+		PK_Pokemon.dexnum 70;
+		PK_Pokemon.PrimaryType grass;
+		PK_Pokemon.SecondaryType poison;
+	}
+}

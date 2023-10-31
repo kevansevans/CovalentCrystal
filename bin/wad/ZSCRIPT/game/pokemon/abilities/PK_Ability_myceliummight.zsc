@@ -1,0 +1,7 @@
+Class PK_Ability_myceliummight : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "mycelium-might";
+	}
+}

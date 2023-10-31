@@ -1,0 +1,10 @@
+Class PKO_beedrill : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "beedrill";
+		PK_Pokemon.dexnum 15;
+		PK_Pokemon.PrimaryType bug;
+		PK_Pokemon.SecondaryType poison;
+	}
+}

@@ -1,0 +1,9 @@
+Class PKO_blastoise : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "blastoise";
+		PK_Pokemon.dexnum 9;
+		PK_Pokemon.PrimaryType water;
+	}
+}

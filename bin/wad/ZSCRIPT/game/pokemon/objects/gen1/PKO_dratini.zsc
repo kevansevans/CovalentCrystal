@@ -1,0 +1,9 @@
+Class PKO_dratini : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "dratini";
+		PK_Pokemon.dexnum 147;
+		PK_Pokemon.PrimaryType dragon;
+	}
+}

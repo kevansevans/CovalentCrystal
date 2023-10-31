@@ -1,0 +1,9 @@
+Class PKO_shellder : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "shellder";
+		PK_Pokemon.dexnum 90;
+		PK_Pokemon.PrimaryType water;
+	}
+}

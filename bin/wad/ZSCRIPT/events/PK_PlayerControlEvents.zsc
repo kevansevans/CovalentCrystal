@@ -1,0 +1,98 @@
+Class PK_PlayerControlEvents : EventHandler
+{
+	PK_PlayerPawn player;
+	PK_PlayerAvatar avatar;
+
+	override void WorldLoaded(WorldEvent _event)
+	{
+		if (level.levelnum <= 0) return;
+	
+		player = PK_PlayerPawn(players[consoleplayer].mo);
+		
+		if (!player.avatar)
+		{
+			avatar = PK_PlayerAvatar(Actor.spawn('PK_PlayerAvatar', player.pos));
+			player.avatar = avatar;
+			avatar.player = player;
+		}
+	}
+	
+	int moveflag;
+	
+	override void WorldTick()
+	{
+		if (!player) return;
+	
+		if (moveFlag)
+		{
+			double direction = player.angle;
+			
+			if (moveflag & 1)
+			{
+				if (moveflag & 4) direction += 45;
+				if (moveflag & 8) direction -= 45;
+			}
+			else if (moveflag & 2)
+			{
+				direction -= 180;
+				if (moveflag & 4) direction -= 45;
+				if (moveflag & 8) direction += 45;
+			}
+			else if (moveflag & 4)
+			{
+				direction += 90;
+			}
+			else if (moveflag & 8)
+			{
+				direction -= 90;
+			}
+			
+			if (!avatar.teleporting) avatar.MoveDir(direction, 1);
+		}
+	}
+	
+	override bool InputProcess(InputEvent _event)
+	{
+		int keycode = _event.keyscan;
+		
+		switch(keycode)
+		{
+			case 0:
+				if (_event.MouseX || _event.mouseY) return false;
+				return true;
+			case PK_Tab:
+			case PK_Escape:
+				return false;
+				break;
+			case PK_W:
+				if (_event.type == 1) EventHandler.sendNetworkEvent("toggleMoveFlag", 1, 1);
+				else if (_event.type == 2) EventHandler.sendNetworkEvent("toggleMoveFlag", 1, 0);
+				break;
+			case PK_S:
+				if (_event.type == 1) EventHandler.sendNetworkEvent("toggleMoveFlag", 2, 1);
+				else if (_event.type == 2) EventHandler.sendNetworkEvent("toggleMoveFlag", 2, 0);
+				break;
+			case PK_A:
+				if (_event.type == 1) EventHandler.sendNetworkEvent("toggleMoveFlag", 4, 1);
+				else if (_event.type == 2) EventHandler.sendNetworkEvent("toggleMoveFlag", 4, 0);
+				break;
+			case PK_D:
+				if (_event.type == 1) EventHandler.sendNetworkEvent("toggleMoveFlag", 8, 1);
+				else if (_event.type == 2) EventHandler.sendNetworkEvent("toggleMoveFlag", 8, 0);
+				break;
+		}
+		
+		return false;
+	}
+	
+	override void NetworkProcess(ConsoleEvent _event)
+	{
+		switch (int(name(_event.name)))
+		{
+			case int('toggleMoveFlag'):
+				if (_event.args[1]) moveFlag |= _event.args[0];
+				else moveFlag &= ~(_event.args[0]);
+				break;
+		}
+	}
+}

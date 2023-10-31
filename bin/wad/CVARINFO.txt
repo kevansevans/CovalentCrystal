@@ -1,0 +1,1 @@
+server bool PKMN_AllowConsole = true;

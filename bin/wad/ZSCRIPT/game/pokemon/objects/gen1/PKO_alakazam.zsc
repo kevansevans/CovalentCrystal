@@ -1,0 +1,9 @@
+Class PKO_alakazam : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "alakazam";
+		PK_Pokemon.dexnum 65;
+		PK_Pokemon.PrimaryType psychic;
+	}
+}

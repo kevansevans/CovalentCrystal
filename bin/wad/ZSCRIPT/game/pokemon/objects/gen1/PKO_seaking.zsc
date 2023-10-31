@@ -1,0 +1,9 @@
+Class PKO_seaking : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "seaking";
+		PK_Pokemon.dexnum 119;
+		PK_Pokemon.PrimaryType water;
+	}
+}

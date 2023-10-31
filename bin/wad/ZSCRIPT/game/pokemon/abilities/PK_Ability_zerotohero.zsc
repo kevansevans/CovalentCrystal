@@ -1,0 +1,7 @@
+Class PK_Ability_zerotohero : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "zero-to-hero";
+	}
+}

@@ -1,0 +1,7 @@
+Class PK_Ability_competitive : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "competitive";
+	}
+}

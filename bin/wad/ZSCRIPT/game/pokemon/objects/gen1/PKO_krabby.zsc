@@ -1,0 +1,9 @@
+Class PKO_krabby : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "krabby";
+		PK_Pokemon.dexnum 98;
+		PK_Pokemon.PrimaryType water;
+	}
+}

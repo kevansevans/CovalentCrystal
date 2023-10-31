@@ -1,0 +1,10 @@
+Class PKO_geodude : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "geodude";
+		PK_Pokemon.dexnum 74;
+		PK_Pokemon.PrimaryType rock;
+		PK_Pokemon.SecondaryType ground;
+	}
+}

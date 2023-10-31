@@ -1,0 +1,10 @@
+Class PKO_pidgey : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "pidgey";
+		PK_Pokemon.dexnum 16;
+		PK_Pokemon.PrimaryType normal;
+		PK_Pokemon.SecondaryType flying;
+	}
+}

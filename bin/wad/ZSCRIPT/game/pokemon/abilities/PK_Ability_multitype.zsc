@@ -1,0 +1,7 @@
+Class PK_Ability_multitype : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "multitype";
+	}
+}

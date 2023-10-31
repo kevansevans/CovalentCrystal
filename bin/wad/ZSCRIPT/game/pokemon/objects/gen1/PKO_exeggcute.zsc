@@ -1,0 +1,10 @@
+Class PKO_exeggcute : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "exeggcute";
+		PK_Pokemon.dexnum 102;
+		PK_Pokemon.PrimaryType grass;
+		PK_Pokemon.SecondaryType psychic;
+	}
+}

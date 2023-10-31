@@ -1,0 +1,10 @@
+Class PKO_tentacool : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "tentacool";
+		PK_Pokemon.dexnum 72;
+		PK_Pokemon.PrimaryType water;
+		PK_Pokemon.SecondaryType poison;
+	}
+}

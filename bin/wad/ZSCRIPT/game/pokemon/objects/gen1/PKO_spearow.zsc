@@ -1,0 +1,10 @@
+Class PKO_spearow : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "spearow";
+		PK_Pokemon.dexnum 21;
+		PK_Pokemon.PrimaryType normal;
+		PK_Pokemon.SecondaryType flying;
+	}
+}

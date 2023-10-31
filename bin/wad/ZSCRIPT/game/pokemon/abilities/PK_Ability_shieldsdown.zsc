@@ -1,0 +1,7 @@
+Class PK_Ability_shieldsdown : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "shields-down";
+	}
+}

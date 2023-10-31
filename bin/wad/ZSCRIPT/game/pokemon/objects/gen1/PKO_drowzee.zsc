@@ -1,0 +1,9 @@
+Class PKO_drowzee : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "drowzee";
+		PK_Pokemon.dexnum 96;
+		PK_Pokemon.PrimaryType psychic;
+	}
+}

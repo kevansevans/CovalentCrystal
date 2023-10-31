@@ -1,0 +1,9 @@
+Class PKO_ponyta : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "ponyta";
+		PK_Pokemon.dexnum 77;
+		PK_Pokemon.PrimaryType fire;
+	}
+}

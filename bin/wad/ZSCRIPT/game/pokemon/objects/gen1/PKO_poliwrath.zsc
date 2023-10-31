@@ -1,0 +1,10 @@
+Class PKO_poliwrath : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "poliwrath";
+		PK_Pokemon.dexnum 62;
+		PK_Pokemon.PrimaryType water;
+		PK_Pokemon.SecondaryType fighting;
+	}
+}

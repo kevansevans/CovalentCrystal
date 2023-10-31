@@ -1,0 +1,7 @@
+Class PK_Ability_runaway : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "run-away";
+	}
+}

@@ -1,0 +1,10 @@
+Class PKO_doduo : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "doduo";
+		PK_Pokemon.dexnum 84;
+		PK_Pokemon.PrimaryType normal;
+		PK_Pokemon.SecondaryType flying;
+	}
+}

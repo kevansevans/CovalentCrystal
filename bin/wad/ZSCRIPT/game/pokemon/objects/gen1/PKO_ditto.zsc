@@ -1,0 +1,9 @@
+Class PKO_ditto : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "ditto";
+		PK_Pokemon.dexnum 132;
+		PK_Pokemon.PrimaryType normal;
+	}
+}

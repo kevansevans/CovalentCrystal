@@ -1,0 +1,9 @@
+Class PKO_charmander : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "charmander";
+		PK_Pokemon.dexnum 4;
+		PK_Pokemon.PrimaryType fire;
+	}
+}

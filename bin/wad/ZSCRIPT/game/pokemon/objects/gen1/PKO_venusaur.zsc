@@ -1,0 +1,10 @@
+Class PKO_venusaur : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "venusaur";
+		PK_Pokemon.dexnum 3;
+		PK_Pokemon.PrimaryType grass;
+		PK_Pokemon.SecondaryType poison;
+	}
+}

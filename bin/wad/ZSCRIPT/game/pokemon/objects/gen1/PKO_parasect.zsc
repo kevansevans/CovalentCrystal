@@ -1,0 +1,10 @@
+Class PKO_parasect : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "parasect";
+		PK_Pokemon.dexnum 47;
+		PK_Pokemon.PrimaryType bug;
+		PK_Pokemon.SecondaryType grass;
+	}
+}

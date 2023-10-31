@@ -1,0 +1,7 @@
+Class PK_Ability_solarpower : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "solar-power";
+	}
+}

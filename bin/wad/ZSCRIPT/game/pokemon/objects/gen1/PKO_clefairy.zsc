@@ -1,0 +1,9 @@
+Class PKO_clefairy : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "clefairy";
+		PK_Pokemon.dexnum 35;
+		PK_Pokemon.PrimaryType fairy;
+	}
+}

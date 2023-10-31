@@ -1,0 +1,9 @@
+Class PKO_rattata : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "rattata";
+		PK_Pokemon.dexnum 19;
+		PK_Pokemon.PrimaryType normal;
+	}
+}

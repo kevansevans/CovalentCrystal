@@ -1,0 +1,7 @@
+Class PK_Ability_poisonheal : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "poison-heal";
+	}
+}

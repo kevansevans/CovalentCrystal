@@ -1,0 +1,10 @@
+Class PKO_cloyster : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "cloyster";
+		PK_Pokemon.dexnum 91;
+		PK_Pokemon.PrimaryType water;
+		PK_Pokemon.SecondaryType ice;
+	}
+}

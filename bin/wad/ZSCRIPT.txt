@@ -1,0 +1,15 @@
+version "4.10"
+
+#include "ZSCRIPT/actors/PK_BaseActor.zsc"
+#include "ZSCRIPT/actors/PK_PlayerPawn.zsc"
+#include "ZSCRIPT/actors/PK_NPCActors.zsc"
+#include "ZSCRIPT/actors/map tools/PK_Trigger.zsc"
+
+#include "ZSCRIPT/enums/PK_KeyCode.zsc"
+
+#include "ZSCRIPT/events/PK_TitleMapEvent.zsc"
+#include "ZSCRIPT/events/PK_PlayerControlEvents.zsc"
+
+#include "ZSCRIPT/game/Include.txt"
+
+#include "ZSCRIPT/intro/PK_IntroAnimation.zsc"

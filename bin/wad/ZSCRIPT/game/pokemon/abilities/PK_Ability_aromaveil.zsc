@@ -1,0 +1,7 @@
+Class PK_Ability_aromaveil : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "aroma-veil";
+	}
+}

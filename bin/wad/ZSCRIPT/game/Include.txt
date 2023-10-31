@@ -1,0 +1,7 @@
+#include "./pokemon/PK_Type.zsc"
+#include "./pokemon/abilities/Include.txt"
+#include "./pokemon/actors/Include.txt"
+#include "./pokemon/objects/PK_Pokemon.zsc"
+#include "./pokemon/objects/#placeholders/Include.txt"
+#include "./pokemon/objects/gen1/Include.txt"
+#include "./pokemon/objects/gen3/Include.txt"

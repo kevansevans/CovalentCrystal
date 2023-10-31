@@ -1,0 +1,7 @@
+Class PK_Ability_electricsurge : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "electric-surge";
+	}
+}

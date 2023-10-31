@@ -1,0 +1,10 @@
+Class PKO_fearow : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "fearow";
+		PK_Pokemon.dexnum 22;
+		PK_Pokemon.PrimaryType normal;
+		PK_Pokemon.SecondaryType flying;
+	}
+}

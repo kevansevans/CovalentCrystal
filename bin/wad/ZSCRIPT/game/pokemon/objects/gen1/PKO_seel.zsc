@@ -1,0 +1,9 @@
+Class PKO_seel : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "seel";
+		PK_Pokemon.dexnum 86;
+		PK_Pokemon.PrimaryType water;
+	}
+}

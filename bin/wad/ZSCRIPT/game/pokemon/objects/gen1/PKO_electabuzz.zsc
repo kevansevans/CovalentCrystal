@@ -1,0 +1,9 @@
+Class PKO_electabuzz : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "electabuzz";
+		PK_Pokemon.dexnum 125;
+		PK_Pokemon.PrimaryType electric;
+	}
+}

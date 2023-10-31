@@ -1,0 +1,9 @@
+Class PKO_tauros : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "tauros";
+		PK_Pokemon.dexnum 128;
+		PK_Pokemon.PrimaryType normal;
+	}
+}

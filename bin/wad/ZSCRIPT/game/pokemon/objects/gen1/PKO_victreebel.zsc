@@ -1,0 +1,10 @@
+Class PKO_victreebel : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "victreebel";
+		PK_Pokemon.dexnum 71;
+		PK_Pokemon.PrimaryType grass;
+		PK_Pokemon.SecondaryType poison;
+	}
+}

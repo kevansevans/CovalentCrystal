@@ -1,0 +1,9 @@
+Class PKO_clefable : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "clefable";
+		PK_Pokemon.dexnum 36;
+		PK_Pokemon.PrimaryType fairy;
+	}
+}

@@ -1,0 +1,7 @@
+Class PK_Ability_magicguard : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "magic-guard";
+	}
+}

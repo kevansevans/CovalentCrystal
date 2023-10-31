@@ -1,0 +1,7 @@
+Class PK_Ability_beastboost : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "beast-boost";
+	}
+}

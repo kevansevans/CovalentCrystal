@@ -1,0 +1,7 @@
+Class PK_Ability_quarkdrive : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "quark-drive";
+	}
+}

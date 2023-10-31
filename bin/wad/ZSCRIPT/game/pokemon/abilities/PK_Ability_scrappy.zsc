@@ -1,0 +1,7 @@
+Class PK_Ability_scrappy : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "scrappy";
+	}
+}

@@ -1,0 +1,7 @@
+Class PK_Ability_raindish : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "rain-dish";
+	}
+}

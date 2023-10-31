@@ -1,0 +1,7 @@
+Class PK_Ability_grasspelt : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "grass-pelt";
+	}
+}

@@ -1,0 +1,10 @@
+Class PKO_vileplume : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "vileplume";
+		PK_Pokemon.dexnum 45;
+		PK_Pokemon.PrimaryType grass;
+		PK_Pokemon.SecondaryType poison;
+	}
+}

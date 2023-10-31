@@ -1,0 +1,9 @@
+Class PKO_lickitung : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "lickitung";
+		PK_Pokemon.dexnum 108;
+		PK_Pokemon.PrimaryType normal;
+	}
+}

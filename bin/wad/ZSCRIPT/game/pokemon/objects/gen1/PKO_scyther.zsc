@@ -1,0 +1,10 @@
+Class PKO_scyther : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "scyther";
+		PK_Pokemon.dexnum 123;
+		PK_Pokemon.PrimaryType bug;
+		PK_Pokemon.SecondaryType flying;
+	}
+}

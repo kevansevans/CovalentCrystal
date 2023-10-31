@@ -1,0 +1,10 @@
+Class PKO_starmie : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "starmie";
+		PK_Pokemon.dexnum 121;
+		PK_Pokemon.PrimaryType water;
+		PK_Pokemon.SecondaryType psychic;
+	}
+}

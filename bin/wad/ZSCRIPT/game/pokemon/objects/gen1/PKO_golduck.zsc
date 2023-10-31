@@ -1,0 +1,9 @@
+Class PKO_golduck : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "golduck";
+		PK_Pokemon.dexnum 55;
+		PK_Pokemon.PrimaryType water;
+	}
+}

@@ -1,0 +1,169 @@
+enum KeyCode
+{
+	Escape = 1,
+	Tilde = 41,
+	Space = 57,
+}
+
+Class PK_TitleMapEvent : EventHandler
+{
+	bool atTitle;
+	bool atMenu;
+	
+	ui int cooldown;
+	ui menu cmenu;
+	
+	int menudelay;
+	
+	Actor animator;
+	
+	bool fadeToWhite;
+	ui double whiteFade;
+	
+	override void OnRegister()
+	{
+		EventHandler.SendInterfaceEvent(consoleplayer, 'setCooldown', 35);
+	}
+	
+	override void WorldLoaded(WorldEvent _event)
+	{
+		Animator = Actor.spawn('PK_AnimHandler');
+		
+		let player = players[consoleplayer].mo;
+		player.A_SetSize(16, 56);
+		player.ViewHeight = 41;
+	}
+	
+	override void UiTick()
+	{
+		if (cooldown) --cooldown;
+		
+		cmenu = Menu.getCurrentMenu();
+		if (cmenu)
+		{
+			if (!atTitle && !atMenu) cmenu.close();
+			if (atTitle && !atMenu) cmenu.close();
+		}
+		else
+		{
+			if (atTitle && atMenu)
+			{
+				EventHandler.sendNetworkEvent('sendPlayerToTitle');
+			}
+		}
+	}
+	
+	override void WorldTick()
+	{
+		if (!atMenu) return;
+		
+		++menudelay;
+	}
+	
+	override bool InputProcess(InputEvent _event)
+	{
+		let keyscan = _event.keyscan;
+		
+		if (keyscan == 41 && Cvar.getCvar('PKMN_AllowConsole').getBool())
+		{
+			return false;
+		}
+		
+		if (cooldown)
+		{
+			return true;
+		}
+		
+		if (keyscan == 1)
+		{
+			if (!atTitle && !atMenu)
+			{
+				EventHandler.sendNetworkEvent('sendPlayerToTitle');
+				cooldown = 35;
+				return true;
+			}
+			else if (atTitle && !atMenu)
+			{
+				EventHandler.sendNetworkEvent('sendPlayerToMenu');
+				Menu.SetMenu('MainMenu');
+				return true;
+			}
+			else if (atTitle && atMenu)
+			{
+				if (!cmenu)
+				{
+					EventHandler.sendNetworkEvent('sendPlayerToTitle');
+				}
+				cooldown = 35;
+				return true;
+			}
+		}
+		
+		return true;
+	}
+	
+	override void NetworkProcess(ConsoleEvent _event)
+	{
+		switch (int(name(_event.name)))
+		{
+			case int('setMenuStatus'):
+				atMenu = _event.args[0];
+				break;
+			case int('sendPlayerToTitle'):
+				teleportToTitle();
+				if (animator) animator.destroy();
+				atMenu = false;
+				atTitle = true;
+				fadeToWhite = false;
+				break;
+			case int('sendPlayerToMenu'):
+				teleportToMenu();
+				atMenu = true;
+				fadeToWhite = false;
+				break;
+			case int('toggleWhiteFade'):
+				fadeToWhite = _event.args[0];
+				break;
+		}
+	}
+	
+	override void InterfaceProcess(ConsoleEvent _event)
+	{
+		switch (int(name(_event.name)))
+		{
+			case int('setCooldown'):
+				cooldown = _event.args[0];
+				break;
+		}
+	}
+	
+	override void RenderOverlay(RenderEvent _event)
+	{
+		if (!fadeToWhite) return;
+		
+		Screen.Dim(Color("FFFFFF"), whiteFade, 0, 0, Screen.getWidth(), Screen.getHeight());
+		whiteFade += 0.013;
+	}
+	
+	void teleportToTitle()
+	{
+		let player = players[consoleplayer].mo;
+		
+		let iter = Level.createActorIterator(2, 'MapSpot');
+		let spot = iter.next();
+		
+		player.setOrigin(spot.pos, false);
+		player.S_ChangeMusic('');
+	}
+	
+	void teleportToMenu()
+	{
+		let player = players[consoleplayer].mo;
+		
+		let iter = Level.createActorIterator(1, 'MapSpot');
+		let spot = iter.next();
+		
+		player.setOrigin(spot.pos, false);
+		player.S_ChangeMusic('MENUMUS');
+	}
+}

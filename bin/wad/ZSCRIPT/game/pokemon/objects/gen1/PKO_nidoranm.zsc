@@ -1,0 +1,9 @@
+Class PKO_nidoranm : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "nidoran-m";
+		PK_Pokemon.dexnum 32;
+		PK_Pokemon.PrimaryType poison;
+	}
+}

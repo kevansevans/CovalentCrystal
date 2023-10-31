@@ -1,0 +1,9 @@
+Class PKO_dugtrio : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "dugtrio";
+		PK_Pokemon.dexnum 51;
+		PK_Pokemon.PrimaryType ground;
+	}
+}

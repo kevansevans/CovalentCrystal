@@ -1,0 +1,9 @@
+Class PKO_sandslash : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "sandslash";
+		PK_Pokemon.dexnum 28;
+		PK_Pokemon.PrimaryType ground;
+	}
+}

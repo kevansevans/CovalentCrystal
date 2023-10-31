@@ -1,0 +1,9 @@
+Class PKO_eevee : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "eevee";
+		PK_Pokemon.dexnum 133;
+		PK_Pokemon.PrimaryType normal;
+	}
+}

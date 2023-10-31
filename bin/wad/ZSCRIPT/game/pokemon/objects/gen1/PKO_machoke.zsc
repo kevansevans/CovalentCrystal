@@ -1,0 +1,9 @@
+Class PKO_machoke : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "machoke";
+		PK_Pokemon.dexnum 67;
+		PK_Pokemon.PrimaryType fighting;
+	}
+}

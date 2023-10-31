@@ -1,0 +1,10 @@
+Class PKO_exeggutor : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "exeggutor";
+		PK_Pokemon.dexnum 103;
+		PK_Pokemon.PrimaryType grass;
+		PK_Pokemon.SecondaryType psychic;
+	}
+}

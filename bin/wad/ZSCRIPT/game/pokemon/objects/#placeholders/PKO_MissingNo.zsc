@@ -1,0 +1,9 @@
+Class PKO_MissingNo : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.AbilityClass "PK_Ability_Levitate";
+		PK_Pokemon.PrimaryType Flying;
+		PK_Pokemon.SecondaryType Normal;
+	}
+}

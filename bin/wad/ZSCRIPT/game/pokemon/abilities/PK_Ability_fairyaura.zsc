@@ -1,0 +1,7 @@
+Class PK_Ability_fairyaura : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "fairy-aura";
+	}
+}

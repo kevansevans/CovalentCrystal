@@ -1,0 +1,7 @@
+Class PK_Ability_liquidooze : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "liquid-ooze";
+	}
+}

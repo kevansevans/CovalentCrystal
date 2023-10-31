@@ -1,0 +1,10 @@
+Class PKO_butterfree : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "butterfree";
+		PK_Pokemon.dexnum 12;
+		PK_Pokemon.PrimaryType bug;
+		PK_Pokemon.SecondaryType flying;
+	}
+}

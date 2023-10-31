@@ -1,0 +1,10 @@
+Class PKO_wigglytuff : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "wigglytuff";
+		PK_Pokemon.dexnum 40;
+		PK_Pokemon.PrimaryType normal;
+		PK_Pokemon.SecondaryType fairy;
+	}
+}

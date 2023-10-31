@@ -1,0 +1,9 @@
+Class PKO_abra : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "abra";
+		PK_Pokemon.dexnum 63;
+		PK_Pokemon.PrimaryType psychic;
+	}
+}

@@ -1,0 +1,9 @@
+Class PKO_porygon : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "porygon";
+		PK_Pokemon.dexnum 137;
+		PK_Pokemon.PrimaryType normal;
+	}
+}

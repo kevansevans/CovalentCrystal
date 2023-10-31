@@ -1,0 +1,9 @@
+Class PKO_pinsir : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "pinsir";
+		PK_Pokemon.dexnum 127;
+		PK_Pokemon.PrimaryType bug;
+	}
+}

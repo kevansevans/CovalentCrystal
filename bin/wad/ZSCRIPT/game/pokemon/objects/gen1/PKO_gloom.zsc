@@ -1,0 +1,10 @@
+Class PKO_gloom : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "gloom";
+		PK_Pokemon.dexnum 44;
+		PK_Pokemon.PrimaryType grass;
+		PK_Pokemon.SecondaryType poison;
+	}
+}

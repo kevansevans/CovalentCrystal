@@ -1,0 +1,10 @@
+Class PKO_golem : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "golem";
+		PK_Pokemon.dexnum 76;
+		PK_Pokemon.PrimaryType rock;
+		PK_Pokemon.SecondaryType ground;
+	}
+}

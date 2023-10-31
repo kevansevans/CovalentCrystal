@@ -1,0 +1,7 @@
+Class PK_Ability_arenatrap : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "arena-trap";
+	}
+}

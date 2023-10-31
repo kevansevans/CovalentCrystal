@@ -1,0 +1,7 @@
+Class PK_Ability_innardsout : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "innards-out";
+	}
+}

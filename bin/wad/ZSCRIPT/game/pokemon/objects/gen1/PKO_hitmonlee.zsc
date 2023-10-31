@@ -1,0 +1,9 @@
+Class PKO_hitmonlee : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "hitmonlee";
+		PK_Pokemon.dexnum 106;
+		PK_Pokemon.PrimaryType fighting;
+	}
+}

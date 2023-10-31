@@ -1,0 +1,16 @@
+Class PK_Ability : Object
+{
+	String abilityName;
+	
+	PK_AbilityType type;
+	
+	virtual void Init()
+	{
+	
+	}
+}
+
+Enum PK_AbilityType
+{
+
+}

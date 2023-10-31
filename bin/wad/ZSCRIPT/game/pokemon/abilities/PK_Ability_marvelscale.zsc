@@ -1,0 +1,7 @@
+Class PK_Ability_marvelscale : PK_Ability
+{
+	override void init()
+	{
+		abilityName = "marvel-scale";
+	}
+}

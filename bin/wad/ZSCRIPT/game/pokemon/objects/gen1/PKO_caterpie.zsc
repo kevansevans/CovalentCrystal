@@ -1,0 +1,9 @@
+Class PKO_caterpie : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "caterpie";
+		PK_Pokemon.dexnum 10;
+		PK_Pokemon.PrimaryType bug;
+	}
+}

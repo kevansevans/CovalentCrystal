@@ -1,0 +1,10 @@
+Class PKO_ivysaur : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "ivysaur";
+		PK_Pokemon.dexnum 2;
+		PK_Pokemon.PrimaryType grass;
+		PK_Pokemon.SecondaryType poison;
+	}
+}

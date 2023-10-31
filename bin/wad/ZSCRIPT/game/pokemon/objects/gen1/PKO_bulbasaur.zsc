@@ -1,0 +1,10 @@
+Class PKO_bulbasaur : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "bulbasaur";
+		PK_Pokemon.dexnum 1;
+		PK_Pokemon.PrimaryType grass;
+		PK_Pokemon.SecondaryType poison;
+	}
+}

@@ -1,0 +1,10 @@
+Class PKO_gengar : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "gengar";
+		PK_Pokemon.dexnum 94;
+		PK_Pokemon.PrimaryType ghost;
+		PK_Pokemon.SecondaryType poison;
+	}
+}

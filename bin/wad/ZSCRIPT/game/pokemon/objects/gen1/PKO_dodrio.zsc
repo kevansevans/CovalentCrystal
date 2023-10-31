@@ -1,0 +1,10 @@
+Class PKO_dodrio : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "dodrio";
+		PK_Pokemon.dexnum 85;
+		PK_Pokemon.PrimaryType normal;
+		PK_Pokemon.SecondaryType flying;
+	}
+}

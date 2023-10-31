@@ -1,0 +1,9 @@
+Class PKO_magikarp : PK_Pokemon
+{
+	Default
+	{
+		PK_Pokemon.namespace "magikarp";
+		PK_Pokemon.dexnum 129;
+		PK_Pokemon.PrimaryType water;
+	}
+}
