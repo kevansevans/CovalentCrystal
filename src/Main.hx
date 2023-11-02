@@ -4,6 +4,7 @@ package;
 //Covalent Crystal builder tool thing
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 import haxe.crypto.Md5;
+import rom.RomRipper;
 import sys.FileSystem;
 import sys.io.File;
 import setup.GZDoom;
@@ -100,6 +101,8 @@ class Main
 				Sys.println(_ver);
 				Sys.println("Pokemon - Crystal Version (USA, Europe) (Rev A)");
 		}
+		
+		new RomRipper(File.getBytes('./' + _path));
 	}
 	
 }

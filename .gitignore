@@ -22,3 +22,19 @@ bin/Main.lib
 bin/Options.txt
 
 *.gbc
+
+bin/Main-debug.exe
+
+bin/Main-debug.exe.hash
+
+bin/Main-debug.exp
+
+bin/Main-debug.ilk
+
+bin/Main-debug.lib
+
+bin/Main-debug.pdb
+
+bin/test.lump
+
+bin/wad/SPRITES/rips/
