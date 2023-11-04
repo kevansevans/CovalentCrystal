@@ -1,9 +1,0 @@
-Class PKO_chansey : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "chansey";
-		PK_Pokemon.dexnum 113;
-		PK_Pokemon.PrimaryType normal;
-	}
-}

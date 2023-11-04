@@ -1,7 +1,0 @@
-Class PK_Ability_effectspore : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "effect-spore";
-	}
-}

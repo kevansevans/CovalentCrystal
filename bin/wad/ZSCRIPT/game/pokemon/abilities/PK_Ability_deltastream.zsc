@@ -1,7 +1,0 @@
-Class PK_Ability_deltastream : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "delta-stream";
-	}
-}

@@ -1,7 +1,0 @@
-Class PK_Ability_purifyingsalt : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "purifying-salt";
-	}
-}

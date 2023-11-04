@@ -1,7 +1,0 @@
-Class PK_Ability_wanderingspirit : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "wandering-spirit";
-	}
-}

@@ -1,7 +1,0 @@
-Class PK_Ability_plus : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "plus";
-	}
-}

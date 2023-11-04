@@ -1,7 +1,0 @@
-Class PK_Ability_flamebody : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "flame-body";
-	}
-}

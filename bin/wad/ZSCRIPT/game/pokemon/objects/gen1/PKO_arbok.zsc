@@ -1,9 +1,0 @@
-Class PKO_arbok : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "arbok";
-		PK_Pokemon.dexnum 24;
-		PK_Pokemon.PrimaryType poison;
-	}
-}

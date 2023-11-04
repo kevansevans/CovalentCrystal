@@ -1,9 +1,0 @@
-Class PKO_primeape : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "primeape";
-		PK_Pokemon.dexnum 57;
-		PK_Pokemon.PrimaryType fighting;
-	}
-}

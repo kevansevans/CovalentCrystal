@@ -1,7 +1,0 @@
-Class PK_Ability_wimpout : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "wimp-out";
-	}
-}

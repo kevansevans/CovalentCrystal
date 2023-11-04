@@ -1,9 +1,0 @@
-Class PKO_machop : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "machop";
-		PK_Pokemon.dexnum 66;
-		PK_Pokemon.PrimaryType fighting;
-	}
-}

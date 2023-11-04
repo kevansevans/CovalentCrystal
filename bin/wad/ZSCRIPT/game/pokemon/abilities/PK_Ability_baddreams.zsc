@@ -1,7 +1,0 @@
-Class PK_Ability_baddreams : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "bad-dreams";
-	}
-}

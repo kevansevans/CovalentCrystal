@@ -1,7 +1,0 @@
-Class PK_Ability_rattled : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "rattled";
-	}
-}

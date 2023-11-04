@@ -1,7 +1,0 @@
-Class PK_Ability_speedboost : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "speed-boost";
-	}
-}

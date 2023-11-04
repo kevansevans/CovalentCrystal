@@ -1,7 +1,0 @@
-Class PK_Ability_mirrorarmor : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "mirror-armor";
-	}
-}

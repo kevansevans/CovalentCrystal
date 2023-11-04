@@ -1,7 +1,0 @@
-Class PK_Ability_queenlymajesty : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "queenly-majesty";
-	}
-}

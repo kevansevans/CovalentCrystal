@@ -1,7 +1,0 @@
-Class PK_Ability_powerspot : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "power-spot";
-	}
-}

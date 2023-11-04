@@ -1,7 +1,0 @@
-Class PK_Ability_soulheart : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "soul-heart";
-	}
-}

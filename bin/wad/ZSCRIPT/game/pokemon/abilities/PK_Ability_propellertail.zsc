@@ -1,7 +1,0 @@
-Class PK_Ability_propellertail : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "propeller-tail";
-	}
-}

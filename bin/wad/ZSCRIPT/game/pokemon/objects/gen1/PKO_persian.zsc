@@ -1,9 +1,0 @@
-Class PKO_persian : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "persian";
-		PK_Pokemon.dexnum 53;
-		PK_Pokemon.PrimaryType normal;
-	}
-}

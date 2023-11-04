@@ -1,7 +1,0 @@
-Class PK_Ability_voltabsorb : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "volt-absorb";
-	}
-}

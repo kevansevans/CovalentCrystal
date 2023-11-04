@@ -1,7 +1,0 @@
-Class PK_Ability_whitesmoke : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "white-smoke";
-	}
-}

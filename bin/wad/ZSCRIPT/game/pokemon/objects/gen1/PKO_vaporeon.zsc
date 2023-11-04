@@ -1,9 +1,0 @@
-Class PKO_vaporeon : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "vaporeon";
-		PK_Pokemon.dexnum 134;
-		PK_Pokemon.PrimaryType water;
-	}
-}

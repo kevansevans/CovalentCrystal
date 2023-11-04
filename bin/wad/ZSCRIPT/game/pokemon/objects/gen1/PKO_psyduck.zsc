@@ -1,9 +1,0 @@
-Class PKO_psyduck : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "psyduck";
-		PK_Pokemon.dexnum 54;
-		PK_Pokemon.PrimaryType water;
-	}
-}

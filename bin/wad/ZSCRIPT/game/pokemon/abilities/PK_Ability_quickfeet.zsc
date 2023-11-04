@@ -1,7 +1,0 @@
-Class PK_Ability_quickfeet : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "quick-feet";
-	}
-}

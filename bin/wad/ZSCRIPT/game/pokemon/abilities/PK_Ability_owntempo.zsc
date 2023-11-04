@@ -1,7 +1,0 @@
-Class PK_Ability_owntempo : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "own-tempo";
-	}
-}

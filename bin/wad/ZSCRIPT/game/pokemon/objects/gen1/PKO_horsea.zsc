@@ -1,9 +1,0 @@
-Class PKO_horsea : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "horsea";
-		PK_Pokemon.dexnum 116;
-		PK_Pokemon.PrimaryType water;
-	}
-}

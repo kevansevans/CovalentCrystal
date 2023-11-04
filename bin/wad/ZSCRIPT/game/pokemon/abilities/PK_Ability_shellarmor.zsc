@@ -1,7 +1,0 @@
-Class PK_Ability_shellarmor : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "shell-armor";
-	}
-}

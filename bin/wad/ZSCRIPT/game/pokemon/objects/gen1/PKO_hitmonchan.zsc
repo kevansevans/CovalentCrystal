@@ -1,9 +1,0 @@
-Class PKO_hitmonchan : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "hitmonchan";
-		PK_Pokemon.dexnum 107;
-		PK_Pokemon.PrimaryType fighting;
-	}
-}

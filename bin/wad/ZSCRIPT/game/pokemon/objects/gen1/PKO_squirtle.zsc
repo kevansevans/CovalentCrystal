@@ -1,9 +1,0 @@
-Class PKO_squirtle : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "squirtle";
-		PK_Pokemon.dexnum 7;
-		PK_Pokemon.PrimaryType water;
-	}
-}

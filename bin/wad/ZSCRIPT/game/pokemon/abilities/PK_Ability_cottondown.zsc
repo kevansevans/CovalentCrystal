@@ -1,7 +1,0 @@
-Class PK_Ability_cottondown : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "cotton-down";
-	}
-}

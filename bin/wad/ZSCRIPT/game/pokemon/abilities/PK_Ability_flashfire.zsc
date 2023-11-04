@@ -1,7 +1,0 @@
-Class PK_Ability_flashfire : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "flash-fire";
-	}
-}

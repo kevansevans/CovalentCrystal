@@ -1,7 +1,5 @@
 Gameinfo
 {
-	AddEventHandlers = "PK_PlayerControlEvents"
-	PlayerClasses = "PK_PlayerPawn"
 	DimAmount = 0
 }
 
@@ -27,10 +25,6 @@ Map MAP02 "New Bark Town"
 
 DoomEdNums
 {
-	11000 = PK_TeleportTrigger
-	
-	12000 = PK_NPC_MALE00
-	
 	//20000 = PK_AnimHandler
 	20001 = PK_TitleAnim
 	20002 = PK_TitleSuicune
@@ -48,6 +42,4 @@ DoomEdNums
 	20014 = PK_SuicuneCloseUp
 	20015 = PK_SuicuneRisingBack
 	20016 = PK_TitleLetter_C
-	
-	30000 = PK_BaseNPC
 }

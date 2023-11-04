@@ -1,7 +1,0 @@
-Class PK_Ability_toughclaws : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "tough-claws";
-	}
-}

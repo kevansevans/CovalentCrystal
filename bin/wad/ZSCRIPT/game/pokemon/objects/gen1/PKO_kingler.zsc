@@ -1,9 +1,0 @@
-Class PKO_kingler : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "kingler";
-		PK_Pokemon.dexnum 99;
-		PK_Pokemon.PrimaryType water;
-	}
-}

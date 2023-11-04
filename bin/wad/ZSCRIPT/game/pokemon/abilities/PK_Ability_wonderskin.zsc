@@ -1,7 +1,0 @@
-Class PK_Ability_wonderskin : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "wonder-skin";
-	}
-}

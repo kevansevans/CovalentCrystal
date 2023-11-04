@@ -1,7 +1,0 @@
-Class PK_Ability_screencleaner : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "screen-cleaner";
-	}
-}

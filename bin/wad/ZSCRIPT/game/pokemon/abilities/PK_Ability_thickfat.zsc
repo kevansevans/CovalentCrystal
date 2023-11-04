@@ -1,7 +1,0 @@
-Class PK_Ability_thickfat : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "thick-fat";
-	}
-}

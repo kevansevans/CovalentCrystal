@@ -1,9 +1,0 @@
-Class PKO_sandshrew : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "sandshrew";
-		PK_Pokemon.dexnum 27;
-		PK_Pokemon.PrimaryType ground;
-	}
-}

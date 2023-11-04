@@ -1,9 +1,0 @@
-Class PKO_jolteon : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "jolteon";
-		PK_Pokemon.dexnum 135;
-		PK_Pokemon.PrimaryType electric;
-	}
-}

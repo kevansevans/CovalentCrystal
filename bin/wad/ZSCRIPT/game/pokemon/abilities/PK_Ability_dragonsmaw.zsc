@@ -1,7 +1,0 @@
-Class PK_Ability_dragonsmaw : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "dragons-maw";
-	}
-}

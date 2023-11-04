@@ -1,9 +1,0 @@
-Class PKO_charmeleon : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "charmeleon";
-		PK_Pokemon.dexnum 5;
-		PK_Pokemon.PrimaryType fire;
-	}
-}

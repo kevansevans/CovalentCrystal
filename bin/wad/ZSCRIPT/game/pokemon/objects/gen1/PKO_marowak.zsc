@@ -1,9 +1,0 @@
-Class PKO_marowak : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "marowak";
-		PK_Pokemon.dexnum 105;
-		PK_Pokemon.PrimaryType ground;
-	}
-}

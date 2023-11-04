@@ -167,3 +167,13 @@ Class PK_TitleMapEvent : EventHandler
 		player.S_ChangeMusic('MENUMUS');
 	}
 }
+
+Class TestActor : Actor
+{
+	States
+	{
+		Spawn:
+			O000 A -1 Bright;
+			stop;
+	}
+}

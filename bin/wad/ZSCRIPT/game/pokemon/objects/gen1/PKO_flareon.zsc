@@ -1,9 +1,0 @@
-Class PKO_flareon : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "flareon";
-		PK_Pokemon.dexnum 136;
-		PK_Pokemon.PrimaryType fire;
-	}
-}

@@ -1,9 +1,0 @@
-Class PKO_snorlax : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "snorlax";
-		PK_Pokemon.dexnum 143;
-		PK_Pokemon.PrimaryType normal;
-	}
-}

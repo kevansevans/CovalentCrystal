@@ -1,7 +1,0 @@
-Class PK_Ability_comatose : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "comatose";
-	}
-}

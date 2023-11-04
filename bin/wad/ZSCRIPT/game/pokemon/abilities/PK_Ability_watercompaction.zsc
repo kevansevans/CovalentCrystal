@@ -1,7 +1,0 @@
-Class PK_Ability_watercompaction : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "water-compaction";
-	}
-}

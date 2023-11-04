@@ -1,9 +1,0 @@
-Class PKO_poliwhirl : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "poliwhirl";
-		PK_Pokemon.dexnum 61;
-		PK_Pokemon.PrimaryType water;
-	}
-}

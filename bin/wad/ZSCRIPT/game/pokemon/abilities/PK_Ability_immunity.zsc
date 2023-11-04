@@ -1,7 +1,0 @@
-Class PK_Ability_immunity : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "immunity";
-	}
-}

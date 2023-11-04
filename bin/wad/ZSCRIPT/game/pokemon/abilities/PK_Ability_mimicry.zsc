@@ -1,7 +1,0 @@
-Class PK_Ability_mimicry : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "mimicry";
-	}
-}

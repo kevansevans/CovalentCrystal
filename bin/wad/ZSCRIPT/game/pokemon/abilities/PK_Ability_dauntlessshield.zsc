@@ -1,7 +1,0 @@
-Class PK_Ability_dauntlessshield : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "dauntless-shield";
-	}
-}

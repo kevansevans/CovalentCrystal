@@ -1,9 +1,0 @@
-Class PKO_grimer : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "grimer";
-		PK_Pokemon.dexnum 88;
-		PK_Pokemon.PrimaryType poison;
-	}
-}

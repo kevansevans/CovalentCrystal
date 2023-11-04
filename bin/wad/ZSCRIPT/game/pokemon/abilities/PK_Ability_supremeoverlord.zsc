@@ -1,7 +1,0 @@
-Class PK_Ability_supremeoverlord : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "supreme-overlord";
-	}
-}

@@ -1,9 +1,0 @@
-Class PKO_mew : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "mew";
-		PK_Pokemon.dexnum 151;
-		PK_Pokemon.PrimaryType psychic;
-	}
-}

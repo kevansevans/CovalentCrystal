@@ -1,7 +1,0 @@
-Class PK_Ability_static : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "static";
-	}
-}

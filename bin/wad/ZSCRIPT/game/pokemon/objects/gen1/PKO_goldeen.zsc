@@ -1,9 +1,0 @@
-Class PKO_goldeen : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "goldeen";
-		PK_Pokemon.dexnum 118;
-		PK_Pokemon.PrimaryType water;
-	}
-}

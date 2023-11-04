@@ -1,7 +1,0 @@
-Class PK_Ability_moxie : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "moxie";
-	}
-}

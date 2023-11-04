@@ -1,7 +1,0 @@
-Class PK_Ability_gulpmissile : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "gulp-missile";
-	}
-}

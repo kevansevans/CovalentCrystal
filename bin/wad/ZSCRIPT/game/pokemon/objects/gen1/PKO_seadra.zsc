@@ -1,9 +1,0 @@
-Class PKO_seadra : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "seadra";
-		PK_Pokemon.dexnum 117;
-		PK_Pokemon.PrimaryType water;
-	}
-}

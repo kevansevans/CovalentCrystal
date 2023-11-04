@@ -1,9 +1,0 @@
-Class PKO_wartortle : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "wartortle";
-		PK_Pokemon.dexnum 8;
-		PK_Pokemon.PrimaryType water;
-	}
-}

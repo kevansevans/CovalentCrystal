@@ -1,7 +1,0 @@
-Class PK_Ability_ripen : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "ripen";
-	}
-}

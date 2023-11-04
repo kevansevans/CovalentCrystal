@@ -1,9 +1,0 @@
-Class PKO_dragonair : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "dragonair";
-		PK_Pokemon.dexnum 148;
-		PK_Pokemon.PrimaryType dragon;
-	}
-}

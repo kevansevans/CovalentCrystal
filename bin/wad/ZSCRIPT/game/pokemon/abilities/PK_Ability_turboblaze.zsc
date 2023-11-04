@@ -1,7 +1,0 @@
-Class PK_Ability_turboblaze : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "turboblaze";
-	}
-}

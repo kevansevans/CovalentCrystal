@@ -1,7 +1,0 @@
-Class PK_Ability_swordofruin : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "sword-of-ruin";
-	}
-}

@@ -1,9 +1,0 @@
-Class PKO_poliwag : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "poliwag";
-		PK_Pokemon.dexnum 60;
-		PK_Pokemon.PrimaryType water;
-	}
-}

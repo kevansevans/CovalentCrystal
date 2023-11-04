@@ -1,7 +1,0 @@
-Class PK_Ability_suctioncups : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "suction-cups";
-	}
-}

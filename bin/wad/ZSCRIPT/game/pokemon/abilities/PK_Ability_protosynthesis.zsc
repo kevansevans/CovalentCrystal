@@ -1,7 +1,0 @@
-Class PK_Ability_protosynthesis : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "protosynthesis";
-	}
-}

@@ -1,9 +1,0 @@
-Class PKO_ninetales : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "ninetales";
-		PK_Pokemon.dexnum 38;
-		PK_Pokemon.PrimaryType fire;
-	}
-}

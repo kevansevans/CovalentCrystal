@@ -1,9 +1,0 @@
-Class PKO_tangela : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "tangela";
-		PK_Pokemon.dexnum 114;
-		PK_Pokemon.PrimaryType grass;
-	}
-}

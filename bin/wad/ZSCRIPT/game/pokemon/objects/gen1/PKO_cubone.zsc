@@ -1,9 +1,0 @@
-Class PKO_cubone : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "cubone";
-		PK_Pokemon.dexnum 104;
-		PK_Pokemon.PrimaryType ground;
-	}
-}

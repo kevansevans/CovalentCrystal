@@ -1,9 +1,0 @@
-Class PKO_muk : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "muk";
-		PK_Pokemon.dexnum 89;
-		PK_Pokemon.PrimaryType poison;
-	}
-}

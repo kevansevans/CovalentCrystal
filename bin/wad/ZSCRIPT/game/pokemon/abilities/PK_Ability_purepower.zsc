@@ -1,7 +1,0 @@
-Class PK_Ability_purepower : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "pure-power";
-	}
-}

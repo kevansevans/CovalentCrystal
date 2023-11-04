@@ -1,7 +1,0 @@
-Class PK_Ability_flareboost : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "flare-boost";
-	}
-}

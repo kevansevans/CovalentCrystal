@@ -1,9 +1,0 @@
-Class PKO_metapod : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "metapod";
-		PK_Pokemon.dexnum 11;
-		PK_Pokemon.PrimaryType bug;
-	}
-}

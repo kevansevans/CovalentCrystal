@@ -1,9 +1,0 @@
-Class PKO_koffing : PK_Pokemon
-{
-	Default
-	{
-		PK_Pokemon.namespace "koffing";
-		PK_Pokemon.dexnum 109;
-		PK_Pokemon.PrimaryType poison;
-	}
-}

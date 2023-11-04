@@ -1,7 +1,0 @@
-Class PK_Ability_leafguard : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "leaf-guard";
-	}
-}

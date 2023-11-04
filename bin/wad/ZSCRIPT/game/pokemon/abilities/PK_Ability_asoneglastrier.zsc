@@ -1,7 +1,0 @@
-Class PK_Ability_asoneglastrier : PK_Ability
-{
-	override void init()
-	{
-		abilityName = "as-one-glastrier";
-	}
-}
