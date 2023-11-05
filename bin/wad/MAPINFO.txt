@@ -25,6 +25,8 @@ Map MAP02 "New Bark Town"
 
 DoomEdNums
 {
+	10000 = PK_BaseActor
+
 	//20000 = PK_AnimHandler
 	20001 = PK_TitleAnim
 	20002 = PK_TitleSuicune
