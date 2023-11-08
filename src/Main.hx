@@ -14,6 +14,7 @@ import setup.GZDoom;
  * @author Kaelan
  * 
  * To do: Kev, clean up the throws. You knoow you're better than this.
+ * To do: Make HXML file so HaxeDevelop isn't needed
  */
 class Main 
 {
