@@ -8,14 +8,9 @@ map TITLEMAP "TITLEMAP"
 	EventHandlers = "PK_TitleMapEvent"
 }
 
-map MAP00 "Debug Room"
+map MAP01 "Debug Room"
 {
 
-}
-
-map MAP01 "Who are you?"
-{
-	
 }
 
 Map MAP02 "New Bark Town"
@@ -26,7 +21,17 @@ Map MAP02 "New Bark Town"
 DoomEdNums
 {
 	10000 = PK_BaseActor
-
+	
+	//These nums are temporary
+	10001 = PK_GameboyKid
+	10002 = PK_SilverRival
+	10003 = PK_ProfessorOak
+	10004 = PK_TrainerRed
+	10005 = PK_TrainerBlue
+	10006 = PK_Bill
+	10007 = PK_OldMan
+	10008 = PK_LeaderJanine
+	
 	//20000 = PK_AnimHandler
 	20001 = PK_TitleAnim
 	20002 = PK_TitleSuicune

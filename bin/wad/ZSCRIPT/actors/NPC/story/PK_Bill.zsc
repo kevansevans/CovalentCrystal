@@ -1,0 +1,20 @@
+Class PK_Bill : PK_BaseNPC
+{
+	Default
+	{
+		PK_BaseActor.FaceSouth "O027";
+		PK_BaseActor.FaceNorth "O028";
+		PK_BaseActor.FaceEastWest "O029";
+	}
+	
+	States
+	{
+		Spawn:
+			O027 A 0;
+			O028 A 0;
+			O029 A 0;
+		SpawnLoop:
+			TNT1 A 1;
+			Loop;
+	}
+}

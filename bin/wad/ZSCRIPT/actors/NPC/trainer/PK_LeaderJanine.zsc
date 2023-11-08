@@ -1,0 +1,20 @@
+Class PK_LeaderJanine : PK_BaseNPC
+{
+	Default
+	{
+		PK_BaseActor.FaceSouth "O033";
+		PK_BaseActor.FaceNorth "O034";
+		PK_BaseActor.FaceEastWest "O035";
+	}
+	
+	States
+	{
+		Spawn:
+			O033 A 0;
+			O034 A 0;
+			O035 A 0;
+		SpawnLoop:
+			TNT1 A 1;
+			Loop;
+	}
+}

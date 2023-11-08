@@ -1,0 +1,5 @@
+#include "./PK_BaseNPC.zsc"
+
+#include "./generic/include.txt"
+#include "./story/include.txt"
+#include "./trainer/include.txt"

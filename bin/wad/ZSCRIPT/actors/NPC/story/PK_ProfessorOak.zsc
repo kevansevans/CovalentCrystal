@@ -1,0 +1,20 @@
+Class PK_ProfessorOak : PK_BaseNPC
+{
+	Default
+	{
+		PK_BaseActor.FaceSouth "O015";
+		PK_BaseActor.FaceNorth "O016";
+		PK_BaseActor.FaceEastWest "O017";
+	}
+	
+	States
+	{
+		Spawn:
+			O015 A 0;
+			O016 A 0;
+			O017 A 0;
+		SpawnLoop:
+			TNT1 A 1;
+			Loop;
+	}
+}

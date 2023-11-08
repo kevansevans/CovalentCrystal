@@ -1,0 +1,20 @@
+Class PK_OldMan : PK_BaseNPC
+{
+	Default
+	{
+		PK_BaseActor.FaceSouth "O02D";
+		PK_BaseActor.FaceNorth "O02E";
+		PK_BaseActor.FaceEastWest "O02F";
+	}
+	
+	States
+	{
+		Spawn:
+			O02D A 0;
+			O02E A 0;
+			O02F A 0;
+		SpawnLoop:
+			TNT1 A 1;
+			Loop;
+	}
+}

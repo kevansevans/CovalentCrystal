@@ -1,0 +1,3 @@
+#include "./PK_LeaderJanine.zsc"
+#include "./PK_TrainerRed.zsc"
+#include "./PK_TrainerBlue.zsc"
