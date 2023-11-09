@@ -71,4 +71,66 @@ class Export
 		File.saveBytes(_path, picturebytes.getBytes());
 	}
 	
+	public static function pixelsToPosts(_pixels:Array<Int>, _xoffset:Int):Array<Post>
+	{
+		var posts:Array<Post> = [];
+		
+		var inPixels:Bool = false;
+		var offset:Int = 0;
+		var alphoffset:Int = 0;
+		var data:Array<Int> = [];
+		
+		for (pixel in _pixels)
+		{
+			if (pixel != 0)
+			{
+				if (!inPixels) alphoffset = offset;
+				inPixels = true;
+				data.push(pixel);
+			}
+			else if (pixel == 0 && !inPixels)
+			{
+			
+			}
+			else if (pixel == 0 && inPixels)
+			{
+				var post:Post =
+				{
+					xoffset : _xoffset,
+					yoffset : alphoffset,
+					length : data.length,
+					pixels : data.copy(),
+				}
+				
+				alphoffset += data.length;
+				posts.push(post);
+				
+				data = new Array();
+				
+				inPixels = false;
+				
+			}
+			
+			++offset;
+		}
+		
+		if (alphoffset != 0 && data.length == 0)
+		{
+			
+		}
+		else
+		{
+			var post:Post =
+			{
+				xoffset : _xoffset,
+				yoffset : alphoffset,
+				length : data.length,
+				pixels : data.copy(),
+			}
+			
+			posts.push(post);
+		}
+		
+		return posts;
+	}
 }

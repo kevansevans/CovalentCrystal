@@ -18,19 +18,21 @@ import haxe.io.Bytes;
  */
 class RomRipper 
 {
-	static inline var bankoffset:Int = 0x4000;
+	public static inline var bankoffset:Int = 0x4000;
 	
 	public static var rom:Bytes;
+	public static var romdata:Array<Int>;
 	
 	public function new(_data:Bytes) 
 	{
 		rom = _data;
+		romdata = cast rom.getData().copy();
 		
 		Sys.println('Dumping ROM assets...');
 		Sys.println('Ripping overworld sprites');
 		for (i in 0...512)
 		{
-			//OverworldSprite.dumpOverworldSprites(0x30 * bankoffset, i);
+			OverworldSprite.dumpOverworldSprites(0x30 * bankoffset, i);
 		}
 		
 		Sys.println('Ripping battle sprites');
