@@ -32,7 +32,7 @@ class PokemonSprite
 			
 			var pokedata = getPokemonData(pk);
 			
-			var spname:String = "P" + StringTools.hex(pk, 4);
+			var spname:String = "P" + StringTools.hex(pk, 3);
 			
 			var frontpic = PictureSprites.ripSprite(frontpos, pokedata.spritesize >> 4, pokedata.spritesize >> 4);
 			var backpic = PictureSprites.ripSprite(backpos, 6, 6);
@@ -54,7 +54,7 @@ class PokemonSprite
 			
 			var pokedata = getPokemonData(200);
 			
-			var spname:String = "U" + StringTools.hex(un, 4);
+			var spname:String = "U" + StringTools.hex(un, 3);
 			
 			var frontpic = PictureSprites.ripSprite(frontpos, pokedata.spritesize >> 4, pokedata.spritesize >> 4);
 			var backpic = PictureSprites.ripSprite(backpos, 6, 6);
