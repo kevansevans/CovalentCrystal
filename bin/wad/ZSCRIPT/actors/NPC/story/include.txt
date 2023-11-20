@@ -1,3 +1,0 @@
-#include "./PK_Bill.zsc"
-#include "./PK_ProfessorOak.zsc"
-#include "./PK_SilverRival.zsc"

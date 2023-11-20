@@ -48,7 +48,7 @@ class OverworldSprite
 			posts : posts.copy()
 		}
 		
-		Export.writePicture(picture, './wad/SPRITES/rips/overworld/O${StringTools.hex(_sprite, 3)}A0.lmp');
+		Export.writePicture(picture, './wad/SPRITES/overworld/O${StringTools.hex(_sprite, 3)}A0.lmp');
 	}
 	
 }

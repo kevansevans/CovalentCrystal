@@ -1,8 +1,0 @@
-Class PK_BaseNPC : PK_BaseActor
-{
-	Default
-	{
-		Radius 8;
-		Height 16;
-	}
-}

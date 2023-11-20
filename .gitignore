@@ -38,3 +38,7 @@ bin/Main-debug.pdb
 bin/test.lump
 
 bin/wad/SPRITES/rips/
+
+iwad/
+
+bin/

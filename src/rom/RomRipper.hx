@@ -35,12 +35,6 @@ class RomRipper
 			OverworldSprite.dumpOverworldSprites(0x30 * bankoffset, i);
 		}
 		
-		Sys.println('Ripping battle sprites');
-		for (i in 0...251)
-		{
-			//test for unown
-			BattleSprites.dumpBattleSprites(i);
-		}
-		
+		new PokemonSprite();
 	}
 }

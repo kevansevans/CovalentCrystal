@@ -1,6 +1,0 @@
-//Go easy on me, Doom runs at 35 fps
-Texture SWAYGRSS
-	Pic BG_GRASS tics 5
-	Pic BG2GRASS tics 5
-	Pic BG3GRASS tics 5
-	Oscillate

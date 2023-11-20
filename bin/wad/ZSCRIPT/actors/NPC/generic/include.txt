@@ -1,2 +1,0 @@
-#include "./PK_GameboyKid.zsc"
-#include "./PK_OldMan.zsc"

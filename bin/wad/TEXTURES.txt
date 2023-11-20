@@ -1,2 +1,0 @@
-Texture SWAYGRSS, 16, 16
-{}

@@ -4,6 +4,8 @@ package;
 //Covalent Crystal builder tool thing
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 import haxe.crypto.Md5;
+import ipk3.WadBuilder;
+import rom.Pointers;
 import rom.RomRipper;
 import sys.FileSystem;
 import sys.io.File;
@@ -15,6 +17,10 @@ import setup.GZDoom;
  * 
  * To do: Kev, clean up the throws. You knoow you're better than this.
  * To do: Make HXML file so HaxeDevelop isn't needed
+ * 
+ * Credits:
+ * 	Pokemon Crystal Disassembly: https://github.com/pret/pokecrystal
+ * 	PRET Discord: https://discord.gg/d5dubZ3
  */
 class Main 
 {
@@ -26,6 +32,8 @@ class Main
 		Sys.println("Covalent Crystal " + GAMEVERSION);
 		Sys.println("This is a free project made with love!");
 		Sys.println("////////////////////");
+		
+		new Pointers();
 		
 		new Main();
 	}
@@ -49,6 +57,10 @@ class Main
 	
 	function runSetup() 
 	{
+		#if !debug
+		trace("Hey fuck face, you still need to replace me with vkDoom!");
+		#end
+		
 		Sys.println("Running first time setup");
 		if (!FileSystem.exists("./GZDoom")) 
 		{
@@ -56,10 +68,8 @@ class Main
 			FileSystem.createDirectory('./GZDoom');
 			GZDoom.download();
 		}
-		if (!FileSystem.isDirectory('./wad'))
-		{
-			throw "Missing wad folder. Did you download the game correctly?";
-		}
+		
+		WadBuilder.assemble();
 		
 		var files = FileSystem.readDirectory('./');
 		var romfound:Bool = false;
