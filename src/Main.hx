@@ -26,28 +26,24 @@ class Main
 {
 	public static inline var GAMEVERSION:String = "0.0.1";
 	
-	static function main() 
+	static function main()
 	{
 		Sys.println("////////////////////");
 		Sys.println("Covalent Crystal " + GAMEVERSION);
 		Sys.println("This is a free project made with love!");
 		Sys.println("////////////////////");
 		
-		new Pointers();
-		
 		new Main();
 	}
 	
 	public function new()
 	{
-		if (FileSystem.exists('./Covalent.ipk3') && FileSystem.exists("./GZDoom/GZDoom.pk3"))
-		{
-			launchGame();
-		}
-		else
+		if (!FileSystem.exists('./Covalent.ipk3') || !FileSystem.exists("./GZDoom/GZDoom.pk3"))
 		{
 			runSetup();
 		}
+		
+		launchGame();
 	}
 	
 	function launchGame() 
