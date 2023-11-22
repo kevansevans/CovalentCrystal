@@ -52,7 +52,7 @@ class Main
 	
 	function launchGame() 
 	{
-		
+		Sys.command("GZDoom/GZDoom.exe -file GZDoom/covalent.pk3");
 	}
 	
 	function runSetup() 
@@ -96,6 +96,7 @@ class Main
 		if (rompaths[CrystalHashes.ROM_USAEUROPE_REV] != null) extractRom(rompaths[CrystalHashes.ROM_USAEUROPE_REV], CrystalHashes.ROM_USAEUROPE_REV);
 		if (rompaths[CrystalHashes.ROM_USAEUROPE] != null) extractRom(rompaths[CrystalHashes.ROM_USAEUROPE], CrystalHashes.ROM_USAEUROPE);
 		if (rompaths[CrystalHashes.ROM_JAPAN] != null) extractRom(rompaths[CrystalHashes.ROM_JAPAN], CrystalHashes.ROM_JAPAN);
+		WadBuilder.zipwad();
 	}
 	
 	function extractRom(_path:String, _ver:CrystalHashes)
