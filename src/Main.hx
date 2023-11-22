@@ -5,7 +5,7 @@ package;
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 import haxe.crypto.Md5;
 import ipk3.WadBuilder;
-import rom.Pointers;
+import rom.OverworldSprite;
 import rom.RomRipper;
 import sys.FileSystem;
 import sys.io.File;
@@ -92,6 +92,9 @@ class Main
 		if (rompaths[CrystalHashes.ROM_USAEUROPE_REV] != null) extractRom(rompaths[CrystalHashes.ROM_USAEUROPE_REV], CrystalHashes.ROM_USAEUROPE_REV);
 		if (rompaths[CrystalHashes.ROM_USAEUROPE] != null) extractRom(rompaths[CrystalHashes.ROM_USAEUROPE], CrystalHashes.ROM_USAEUROPE);
 		if (rompaths[CrystalHashes.ROM_JAPAN] != null) extractRom(rompaths[CrystalHashes.ROM_JAPAN], CrystalHashes.ROM_JAPAN);
+		
+		OverworldSprite.buildZScript();
+		
 		WadBuilder.zipwad();
 	}
 	
