@@ -1,4 +1,4 @@
-package pokemon;
+package crystal;
 
 /**
  * @author Kaelan
@@ -147,6 +147,18 @@ class BasePokemonData
 		{name : "Porygon"},
 		{name : "Omanyte"},
 		{name : "Omastar"},
+		{name : "Kabuto"},
+		{name : "Kabutops"},
+		{name : "Aerodactyl"},
+		{name : "Snorlax"},
+		{name : "Articuno"},
+		{name : "Zapdos"},
+		{name : "Moltres"},
+		{name : "Dratini"},
+		{name : "Dragonair"},
+		{name : "Dragonite"},
+		{name : "Mewtwo"},
+		{name : "Mew"},
 	];
 }
 typedef PokemonInfo =

@@ -1,7 +1,12 @@
 package rom;
 
 import doom.Export;
-import pokemon.BasePokemonData;
+import crystal.BasePokemonData;
+import sys.io.File;
+import sys.FileSystem;
+import haxe.io.Bytes;
+import enums.Pokemon;
+import enums.PokemonType;
 
 /**
  * ...
@@ -11,7 +16,6 @@ class PokemonSprite
 {
 	public static inline var POKEMONPOINTER:Int = 0x120000;
 	public static inline var UNOWNPOINTER:Int = 0x124000;
-	public static inline var POKEMONDATA:Int = 0x51424;
 	
 	public function new() 
 	{
@@ -20,7 +24,7 @@ class PokemonSprite
 		Sys.println('Ripping pokemon sprites');
 		for (pk in 0...251)
 		{
-			if (pk == 200) continue; //unowns have their own tables
+			if (pk == 200) continue;
 			
 			var frontbank = rom[POKEMONPOINTER + (pk * 6)] + 0x35;
 			var frontoffset = (rom[POKEMONPOINTER + (pk * 6) + 2] * 0x100) + rom[POKEMONPOINTER + (pk * 6) + 1];
@@ -30,7 +34,7 @@ class PokemonSprite
 			var backoffset = (rom[POKEMONPOINTER + (pk  * 6) + 5] * 0x100) + rom[POKEMONPOINTER + (pk * 6) + 4];
 			var backpos = (backbank * 0x4000) + backoffset;
 			
-			var pokedata = getPokemonData(pk);
+			var pokedata = RomRipper.getPokemonData(pk);
 			
 			var spname:String = "P" + StringTools.hex(pk, 3);
 			
@@ -52,7 +56,7 @@ class PokemonSprite
 			var backoffset = (rom[UNOWNPOINTER + (un  * 6) + 5] * 0x100) + rom[UNOWNPOINTER + (un * 6) + 4];
 			var backpos = (backbank * 0x4000) + backoffset;
 			
-			var pokedata = getPokemonData(200);
+			var pokedata = RomRipper.getPokemonData(200);
 			
 			var spname:String = "U" + StringTools.hex(un, 3);
 			
@@ -61,34 +65,6 @@ class PokemonSprite
 			
 			Export.writePicture(frontpic, './wad/SPRITES/pokemon/${spname}A0.lmp');
 			Export.writePicture(backpic, './wad/SPRITES/pokemon/${spname}B0.lmp');
-		}
-	}
-	
-	public function getPokemonData(_dexnum:Int):BasePokemonData
-	{
-		var rom = RomRipper.romdata;
-		var offset = POKEMONDATA + (_dexnum * 32);
-		
-		return cast 
-		{
-			dexnum : rom[offset],
-			hp : rom[offset + 1],
-			atk : rom[offset + 2],
-			def : rom[offset + 3],
-			spd : rom[offset + 4],
-			sat : rom[offset + 5],
-			sdf : rom[offset + 6],
-			typeA : rom[offset + 7],
-			typeB : rom[offset + 8],
-			catchrate : rom[offset + 9],
-			basexp : rom[offset + 10],
-			itemA : rom[offset + 11],
-			itemB : rom[offset + 12],
-			gender : rom[offset + 13],
-			unknown1 : rom[offset + 14],
-			steps : rom[offset + 15],
-			unknow2 : rom[offset + 16],
-			spritesize : rom[offset + 17],
 		}
 	}
 }

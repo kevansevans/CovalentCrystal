@@ -1,4 +1,4 @@
-package pokemon;
+package crystal;
 import enums.Overworld;
 
 /**

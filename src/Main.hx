@@ -3,9 +3,11 @@ package;
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //Covalent Crystal builder tool thing
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+import doom.ZScriptBuilder;
 import haxe.crypto.Md5;
 import ipk3.WadBuilder;
 import rom.OverworldSprite;
+import rom.PokemonSprite;
 import rom.RomRipper;
 import sys.FileSystem;
 import sys.io.File;
@@ -93,7 +95,7 @@ class Main
 		if (rompaths[CrystalHashes.ROM_USAEUROPE] != null) extractRom(rompaths[CrystalHashes.ROM_USAEUROPE], CrystalHashes.ROM_USAEUROPE);
 		if (rompaths[CrystalHashes.ROM_JAPAN] != null) extractRom(rompaths[CrystalHashes.ROM_JAPAN], CrystalHashes.ROM_JAPAN);
 		
-		OverworldSprite.buildZScript();
+		new ZScriptBuilder();
 		
 		WadBuilder.zipwad();
 	}

@@ -2,6 +2,8 @@ package rom;
 
 import haxe.io.Bytes;
 
+import crystal.BasePokemonData;
+
 /**
  * ...
  * @author Kaelan
@@ -19,6 +21,7 @@ import haxe.io.Bytes;
 class RomRipper 
 {
 	public static inline var bankoffset:Int = 0x4000;
+	public static inline var POKEMONDATA:Int = 0x51424;
 	
 	public static var rom:Bytes;
 	public static var romdata:Array<Int>;
@@ -36,5 +39,35 @@ class RomRipper
 		}
 		
 		new PokemonSprite();
+		
+		new PaletteBuilder();
+	}
+	
+	public static function getPokemonData(_dexnum:Int):PokemonData
+	{
+		var rom = RomRipper.romdata;
+		var offset = POKEMONDATA + (_dexnum * 32);
+		
+		return cast 
+		{
+			dexnum : rom[offset],
+			hp : rom[offset + 1],
+			atk : rom[offset + 2],
+			def : rom[offset + 3],
+			spd : rom[offset + 4],
+			sat : rom[offset + 5],
+			sdf : rom[offset + 6],
+			typeA : rom[offset + 7],
+			typeB : rom[offset + 8],
+			catchrate : rom[offset + 9],
+			basexp : rom[offset + 10],
+			itemA : rom[offset + 11],
+			itemB : rom[offset + 12],
+			gender : rom[offset + 13],
+			unknown1 : rom[offset + 14],
+			steps : rom[offset + 15],
+			unknow2 : rom[offset + 16],
+			spritesize : rom[offset + 17],
+		}
 	}
 }
