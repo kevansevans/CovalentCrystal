@@ -43,14 +43,7 @@ class Export
 				subbytes.writeByte(post.length);
 				subbytes.writeByte(0xFB);
 				
-				for (pixel in post.pixels)
-				{
-					#if debug
-					subbytes.writeByte(pixel + 249);
-					#else
-					subbytes.writeByte(pixel - 1);
-					#end
-				}
+				for (pixel in post.pixels) subbytes.writeByte(pixel);
 				
 				subbytes.writeByte(0xFB);
 			}
