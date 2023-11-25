@@ -90,7 +90,7 @@ class BasePokemonData
 		{name : "Slowbro"},
 		{name : "Magnemite"},
 		{name : "Magneton"},
-		{name : "Farfetchd"},
+		{name : "Farfetchd", tag : "Farfetch'd"},
 		{name : "Doduo"},
 		{name : "Dodrio"},
 		{name : "Seel"},
@@ -129,7 +129,7 @@ class BasePokemonData
 		{name : "Seaking"},
 		{name : "Staryu"},
 		{name : "Starmie"},
-		{name : "MrMime"},
+		{name : "MrMime", tag : "Mr. Mime"},
 		{name : "Scyther"},
 		{name : "Jynx"},
 		{name : "Electabuzz"},
@@ -164,6 +164,7 @@ class BasePokemonData
 typedef PokemonInfo =
 {
 	var name:String;
+	var ?tag:String; //For odd named pokemon like Mr. Mime or Farfetch'd
 }
 typedef PokemonData =
 {
