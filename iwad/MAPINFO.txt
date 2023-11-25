@@ -1,0 +1,40 @@
+Gameinfo
+{
+	DimAmount = 0
+}
+
+map TITLEMAP "TITLEMAP"
+{
+	EventHandlers = "PK_TitleMapEvent"
+}
+
+map MAP01 "Debug Room"
+{
+
+}
+
+Map MAP02 "New Bark Town"
+{
+	Music = "NEWBARK"
+}
+
+DoomEdNums
+{
+	//20000 = PK_AnimHandler
+	20001 = PK_TitleAnim
+	20002 = PK_TitleSuicune
+	20003 = PK_DittoToGardevoir
+	20004 = PK_UnownAFade
+	20005 = PK_PoweredByGZDoom
+	20006 = PK_RunningSuicuneA
+	20007 = PK_RunningSuicuneB
+	20008 = PK_UnownIHFade
+	20009 = PK_IntroWooper
+	20010 = PK_IntroPichu
+	20011 = PK_UnownUWGTBESLFade
+	20012 = PK_SuicuneRising
+	20013 = PK_UnownFSpawn
+	20014 = PK_SuicuneCloseUp
+	20015 = PK_SuicuneRisingBack
+	20016 = PK_TitleLetter_C
+}

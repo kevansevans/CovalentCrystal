@@ -1,0 +1,10 @@
+enum PK_KeyCode
+{
+	PK_Escape = 1,
+	PK_Tab = 15,
+	PK_W = 17,
+	PK_E = 18,
+	PK_A = 30,
+	PK_S = 31,
+	PK_D = 32,
+}

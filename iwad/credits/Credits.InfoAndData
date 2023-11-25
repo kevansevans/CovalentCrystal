@@ -1,0 +1,13 @@
+Pokecrystal, a repo used for decompiling Pokemon Crystal
+	- https://github.com/pret/pokecrystal
+	- I used this repo to skim for names and information on how everything is
+	arreanged, and a good resource on how the data is meant to be read.
+	- Look, I love you guys, and I greatly respect your work, but good god is
+	this not a good source for how to actually read the rom. I'm actually 
+	surprised and annoyed at the lack of documentation on this game that's been 
+	out for over 20 years now. I might work on my own documentation on how to
+	read the rom as I work on this.
+	
+Pokemon Crystal Offset
+	- https://iimarckus.org/etc/rommap.html
+	- Not 100% accurate but lists a lot of locations in the rom

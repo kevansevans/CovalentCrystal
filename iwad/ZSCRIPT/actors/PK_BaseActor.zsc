@@ -1,0 +1,72 @@
+Class PK_BaseActor : Actor
+{
+	int FaceMode; //0 for always faces, 1 for has 4 directions
+	string FaceSouth;
+	string FaceNorth;
+	string FaceEastWest;
+	property FaceMode: FaceMode;
+	property FaceSouth: FaceSouth;
+	property FaceNorth: FaceNorth;
+	property FaceEastWest: FaceEastWest;
+	
+	Default
+	{
+		PK_BaseActor.FaceMode 1;
+		PK_BaseActor.FaceSouth "O000";
+		PK_BaseActor.FaceNorth "O001";
+		PK_BaseActor.FaceEastWest "O002";
+	}
+	
+	override void Tick()
+	{
+		Super.Tick();
+		
+		updateFacingDirection();
+	}
+	
+	void updateFacingDirection()
+	{
+		if (Self.FaceMode == 0)
+		{
+			self.sprite = GetSpriteIndex(Self.FaceSouth);
+			self.frame = 0;
+			return;
+		}
+	
+		let player = players[consoleplayer].mo;
+		let dir = DeltaAngle(self.angle, angleTo(player));
+		if (dir < 0) dir += 360;
+	
+		self.scale.x = 1;
+		if (dir <= 45 || dir > 315)
+		{
+			self.sprite = GetSpriteIndex(Self.FaceSouth);
+		}
+		else if (dir > 45 && dir <= 135)
+		{
+			self.sprite = GetSpriteIndex(Self.FaceEastWest);
+		}
+		else if (dir > 135 && dir <= 225)
+		{
+			self.sprite = GetSpriteIndex(Self.FaceNorth);
+		}
+		else if (dir > 225 && dir <= 315)
+		{
+			self.scale.x = -1;
+			self.sprite = GetSpriteIndex(Self.FaceEastWest);
+		}
+		
+		self.frame = 0;
+	}
+	
+	States
+	{
+		Spawn:
+			O000 A 0 Bright;
+			O001 A 0;
+			O002 A 0;
+		SpawnLoop:
+			TNT1 A 1;
+			Loop;
+	}
+}

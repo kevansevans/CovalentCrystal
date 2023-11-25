@@ -1,0 +1,9 @@
+LISTMENU "MainMenu"
+{
+	Position 20, 20
+
+	PatchItem "M_LOADG", "l", "LoadGameMenu"
+	PatchItem "M_NGAME", "n", "PlayerclassMenu"
+	PatchItem "M_OPTION","o", "OptionsMenu"
+	PatchItem "M_QUITG", "q", "QuitMenu"
+}

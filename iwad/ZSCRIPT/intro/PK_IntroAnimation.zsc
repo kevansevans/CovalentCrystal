@@ -1,0 +1,801 @@
+Class PK_AnimHandler : Actor
+{
+	override void BeginPlay()
+	{
+		Console.printf('Init intro animation');
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 70;							//Copyright Delay
+			TNT1 A 34 A_TeleportToSpot(6);		//Blackroom
+			TNT1 A 251 A_TeleportToSpot(4);		//Ditto To Gardevoir
+			TNT1 A 49 A_TeleportToSpot(6);		//Blackroom
+			TNT1 A 140 A_TeleportToSpot(5);		//Unown A Fade
+			TNT1 A 75 A_TeleportToSpot(7);		//moving field
+			TNT1 A 19 A_TeleportToSpot(6);		//blackroom
+			TNT1 A 106 A_TeleportToSpot(10);	//unown IH fade
+			TNT1 A 35 A_TeleportToSpot(7);		//moving field
+			TNT1 A 35 A_TeleportToSpot(8);		//Dashing suicune to wooper/pichu popup
+			TNT1 A 22 A_ActivateActor(13);		//Activate wooper
+			TNT1 A 95 A_ActivateActor(14);		//Activate pichu
+			TNT1 A 28 A_TeleportToSpot(6);		//Darkroom
+			TNT1 A 140 A_TeleportToSpot(15);	//Several unown fades
+			TNT1 A 0 S_ChangeMusic("RUNNING");	//Set Music
+			TNT1 A 70 A_TeleportToSpot(11);		//Fast background w/ running suicune
+			TNT1 A 35 A_TeleportToSpot(6);		//blackroom
+			TNT1 A 35 A_TeleportToSpot(16);		//Rising suicune
+			TNT1 A 47 A_ActivateActor(17);		//Activate Unown F
+			TNT1 A 36 A_TeleportToSpot(6);		//blackroom
+			TNT1 A 0 A_ActivateActor(19);		//Activate suicune closeup
+			TNT1 A 54 A_TeleportToSpot(18);		//Suicune closeup
+			TNT1 A 40 A_TeleportToSpot(6);		//blackroom
+			TNT1 A 39 A_TeleportToSpot(20);		//Suicune back rise
+			TNT1 A 60
+			{
+				let iter = Level.createActorIterator(21, 'Actor');
+				let thing = iter.next();
+				
+				Actor.spawn('PK_UnownRitual', thing.pos);
+			}
+			TNT1 A 92
+			{
+				EventHandler.sendNetworkEvent("toggleWhiteFade", 1);
+				A_ActivateActor(21);
+			}
+			TNT1 A 158
+			{
+				A_TeleportToSpot(22);
+				EventHandler.sendNetworkEvent("toggleWhiteFade", 0);
+			}
+			TNT1 A 1
+			{
+				EventHandler.sendNetworkEvent('sendPlayerToTitle');
+			}
+			stop;
+	}
+	
+	Action void A_TeleportToSpot(Int _spot)
+	{
+		let player = players[consoleplayer];
+		
+		let iter = Level.createActorIterator(_spot, 'MapSpot');
+		let spot = iter.next();
+		
+		player.mo.TeleportMove(spot.pos, false);
+	}
+	
+	Action void A_ActivateActor(Int _tag)
+	{
+		let iter = Level.createActorIterator(_tag, 'Actor');
+		let thing = iter.next();
+		
+		thing.SetStateLabel("Activate");
+	}
+}
+
+Class PK_DittoToGardevoir : Actor
+{
+	Default
+	{
+		//$Category Intro Animation
+		//$Title Ditto to Gardevoir
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 1 A_Look();
+			Loop;
+		See:
+			DTA1 ABCDEFGH 1 Bright;
+			DTA1 I 1 A_StartSound("Intro/Bounce", CHAN_AUTO); 
+			DTA1 JKLMNOPQRSTUVWXYZ 1 Bright;
+			DTA2 ABCCDEFGHI 1 Bright;
+			DTA2 J 4 Bright;
+			DTA2 K 30 Bright A_StartSound("Intro/Blink");
+			DTA2 L 3 Bright;
+			DTA2 M 3 Bright;
+			DTA2 N 3 Bright;
+			DTA2 OP 2 Bright;
+			DTA2 R 2 Bright A_StartSound("intro/warp", CHAN_AUTO);
+			DTA2 TVXZ 1 Bright;
+			DTA3 BDFHJ 1 Bright;
+			DTA3 K 28 Bright;
+			DTA3 L 64 Bright A_StartSound("Intro/Sparkle", CHAN_AUTO);
+			DTA3 M 129 Bright;
+			stop;
+	}
+}
+
+Class PK_UnownAFade : Actor
+{
+	Default
+	{
+		//$Category Intro Animation
+		//$Title Unown A Fade
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 1 A_Look();
+			Loop;
+		See:
+			TNT1 A 2;
+			UNON ABCDEFGHIJKJIHGFEDCBA 2 Bright;
+			TNT1 A 2;
+			UNON ABCDEFGHIJK 2 Bright;
+			TNT1 A 0
+			{
+				let pos = invoker.pos;
+				pos.z += 80;
+				Actor.spawn('PK_UnownPulse', pos);
+				A_StartSound("intro/pulsea", CHAN_AUTO);
+			}
+			UNON JIHGFEDCBA 2 Bright;
+			TNT1 A 2;
+			Stop;
+	}
+}
+
+Class PK_UnownIHFade : Actor
+{
+	Default
+	{
+		//$Category Intro Animation
+		//$Title Unown IH fade
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 1 A_Look();
+			Loop;
+		See:
+			TNT1 A 2;
+			UNOI ABCDEFGHIJ 2 Bright;
+			UNOI K 2 Bright
+			{
+				let pos = invoker.pos;
+				pos.z += 103;
+				pos.x += 32;
+				Actor.spawn('PK_UnownPulse', pos);
+				A_StartSound("intro/pulseb", CHAN_AUTO);
+			}
+			UNOI JIHGFEDCBA 2 Bright;
+			TNT1 A 2;
+			UNOH ABCDEFGHIJ 2 Bright;
+			UNOH K 2 Bright
+			{
+				let pos = invoker.pos;
+				pos.z += 45;
+				pos.x -= 40;
+				Actor.spawn('PK_UnownPulse', pos);
+				A_StartSound("intro/pulsec", CHAN_AUTO);
+			}
+			UNOH JIHGFEDCBA 2 Bright;
+			stop;
+	}
+}
+
+Class PK_UnownUWGTBESLFade : Actor
+{
+	Default
+	{
+		//$Category Intro Animation
+		//$Title Unown UWGTBESL Fade
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 1 A_Look();
+			Loop;
+		See:
+			TNT1 A 0 A_StartSound("intro/pulsed", CHAN_AUTO);
+			UNOU ABCDEDCBA 2 Bright;
+			TNT1 A 1;
+			UNOW ABCDEDCBA 2 Bright;
+			TNT1 A 1;
+			UNOG ABCDEDCBA 2 Bright;
+			TNT1 A 1;
+			UNOT ABCDEDCBA 2 Bright;
+			TNT1 A 1;
+			UNOB ABCBA 2 Bright;
+			UNOE ABCBA 2 Bright;
+			UNOS ABCBA 2 Bright;
+			UNOL ABCBA 2 Bright;
+			stop;
+	}
+}
+
+Class PK_UnownPulse : Actor
+{
+	Default
+	{
+		+NoGravity;
+	}
+	States
+	{
+		Spawn:
+			UPUL ABCDEFGHIJKLMNO 1 Bright A_Look();
+			Stop;
+	}
+}
+
+Class PK_IntroWooper : Actor
+{
+	Default
+	{
+		//$Category Intro Animation
+		//$Title Wooper Popup
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 1;
+			Loop;
+		Activate:
+			TNT1 A 0 A_StartSound("intro/popup", CHAN_AUTO);
+			WOOP ABCDEFGHI 1 Bright;
+		Settle:
+			WOOP J 1 Bright;
+			Loop;
+	}
+}
+
+Class PK_IntroPichu : Actor
+{
+	Default
+	{
+		//$Category Intro Animation
+		//$Title Pichu Popup
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 1;
+			Loop;
+		Activate:
+			TNT1 A 0 A_StartSound("intro/popup", CHAN_AUTO);
+			PCHU ABCDEFGHIJ 1 Bright;
+			PCHU J 21 Bright;
+			PCHU K 8;
+		Settle:
+			PCHU L 1 Bright;
+			Loop;
+	}
+}
+
+Class PK_TitleSuicune : Actor
+{
+	Default
+	{
+		//$Category Intro Animation
+		//$Title Title Suicune
+	}
+
+	States
+	{
+		Spawn:
+			TSUI AB 5 Bright;
+			TSUI CD 4 Bright;
+			Loop;
+	}
+}
+
+Class PK_RunningSuicuneA : Actor
+{
+	bool stopped;
+
+	Default
+	{
+		//$Category Intro Animation
+		//$Title Running Suicune A
+	
+		Radius 2;
+		+Boss;
+		SeeSound "intro/dash";
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 1 Bright A_Look();
+			Loop;
+		See:
+			TSUI EEEEEFFFFFGGGGHHHH 1 Bright
+			{
+				invoker.vel.x = -20;
+				let player = players[consoleplayer].mo;
+				let iter = Level.CreateLineIDIterator(9);
+				if (player.angleTo(invoker) < 120)
+				{
+					while (true)
+					{
+						int index = iter.next();
+						if (index == -1) break;
+						level.lines[index].sidedef[0].setTexture(1, TexMan.checkForTexture("SWAYGRSS"));
+					}
+				}
+				else
+				{
+					while (true)
+					{
+						int index = iter.next();
+						if (index == -1) break;
+						level.lines[index].sidedef[0].setTexture(1, TexMan.checkForTexture("BG_GRASS"));
+					}
+				}
+			}
+			loop;
+	}
+}
+
+Class PK_RunningSuicuneB : Actor
+{
+	Default
+	{
+		//$Category Intro Animation
+		//$Title Running Suicune B
+		
+		Radius 2;
+	}
+	
+	int timer;
+	
+	override void tick()
+	{
+		Super.tick();
+		
+		if (!target) return;
+		
+		++timer;
+		
+		if (timer > 35) vel.x -= 2;
+		if (timer == 36) A_StartSound("intro/dash", CHAN_AUTO);
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 1 Bright A_Look();
+			Loop;
+		See:
+			TSUI EEEEEFFFFFGGGGHHHH 1 Bright;
+			loop;
+	}
+}
+
+Class PK_SuicuneRising : Actor
+{
+	Default
+	{
+		//$Category Intro Animation
+		//$Title Suicune rise
+		
+		+NoGravity;
+	}
+
+	override void Tick()
+	{
+		Super.tick();
+		
+		if (!target) return;
+		
+		if (self.pos.z < target.pos.z + 14) 
+		{
+			let newpos = self.pos;
+			newpos.z += 4;
+			Self.setOrigin(newpos, true);
+		}
+		else if (self.pos.z >= target.pos.z + 14)
+		{
+			let newpos = target.pos;
+			newpos.x = self.pos.x;
+			newpos.y = self.pos.y;
+			newpos.z += 14;
+			self.setOrigin(newpos, false);
+		}
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 1 A_Look();
+			loop;
+		See:
+			TSUI IJ 5;
+			Loop;
+	}
+}
+
+Class PK_SuicuneRisingBack : Actor
+{
+	Default
+	{
+		//$Category Intro Animation
+		//$Title Suicune rise back
+	
+		+NoGravity;
+		
+		Scale 0.75;
+	}
+	
+	override void tick()
+	{
+		Super.tick();
+		
+		if (!target) return;
+		
+		if (self.pos.z < target.pos.z + 14) 
+		{
+			let newpos = self.pos;
+			newpos.z += 4;
+			Self.setOrigin(newpos, true);
+		}
+		else if (self.pos.z >= target.pos.z + 14)
+		{
+			let newpos = target.pos;
+			newpos.x = self.pos.x;
+			newpos.y = self.pos.y;
+			newpos.z += 14;
+			self.setOrigin(newpos, false);
+		}
+	}
+	
+	states
+	{
+		Spawn:
+			TNT1 A 1 A_Look();
+			Loop;
+		See:
+			TSUI L 1 Bright;
+			Loop;
+		Activate:
+			TSUI M 1 Bright;
+			Loop;
+	}
+}
+
+Class PK_UnownRitual : Actor
+{
+	Default
+	{
+		//$Category Intro Animation
+		//$Title Unown Ritual
+	
+		+NoGravity;
+		
+		Scale 0.75;
+	}
+
+	States
+	{
+		Spawn:
+			UNOR AAABBCCDDEE 1 Bright;
+		Idle:
+			UNOR F -1 Bright;
+			stop;
+	}
+}
+
+Class PK_SuicuneCloseUp : Actor
+{
+	Default
+	{
+		//$Category Intro Animation
+		//$Title Suicune closeup
+	
+		Radius 2;
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A -1;
+			Stop;
+		Activate:
+			TSUI K 1 Bright
+			{
+				invoker.vel.x = -4;
+			}
+			loop;
+	}
+}
+
+Class PK_UnownFSpawn : Actor
+{
+	Default
+	{
+		//$Category Intro Animation
+		//$Title Unown F spawn
+	
+		+NoGravity;
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A -1;
+		Activate:
+			TNT1 A 0
+			{
+				let player = players[consoleplayer].mo;
+				let newpos = player.pos;
+				
+				newpos.z += 46;
+				newpos.x = invoker.pos.x;
+				newpos.y = invoker.pos.y;
+				
+				Invoker.setOrigin(newpos, false);
+			}
+			UNOF ABCD 3 Bright;
+		Idle:
+			UNOF E -1 Bright;
+			Stop;
+	}
+}
+
+Class PK_PoweredByGZDoom : Actor
+{
+	Default
+	{
+		//$Category Intro Animation
+		//$Title Powered by GZDoom
+	}
+
+	States
+	{
+		Spawn:
+			PWRD A 1 Bright;
+			Loop;
+	}
+}
+
+Class PK_TitleLetter : Actor
+{
+	Default
+	{
+		RenderStyle "Translucent";
+	
+		Alpha 0.0;
+	}
+}
+
+Class PK_TitleLetter_C : PK_TitleLetter
+{
+	Actor next;
+	
+	Default
+	{
+		//$Category Intro Animation
+		//$Title Letter C
+	}
+
+	override void Tick()
+	{
+		Super.tick();
+		
+		if (!target) return;
+		
+		alpha += 0.114;
+		
+		if (alpha >= 1.0 && !next)
+		{
+			let pos = self.pos;
+			pos.x += 40;
+			next = Actor.spawn('PK_TitleLetter_R', pos);
+		}
+	}
+
+	States
+	{
+		Spawn:
+			CRYS A 1 Bright A_Look();
+			Loop;
+	}
+}
+
+Class PK_TitleLetter_R : PK_TitleLetter
+{
+	Actor next;
+
+	override void Tick()
+	{
+		Super.tick();
+		
+		alpha += 0.114;
+		
+		if (alpha >= 1 && !next)
+		{
+			let pos = self.pos;
+			pos.x += 40;
+			next = Actor.spawn('PK_TitleLetter_Y', pos);
+		}
+	}
+
+	States
+	{
+		Spawn:
+			CRYS B 1 Bright;
+			Loop;
+	}
+}
+
+Class PK_TitleLetter_Y : PK_TitleLetter
+{
+	Actor next;
+
+	override void Tick()
+	{
+		Super.tick();
+		
+		alpha += 0.114;
+		
+		if (alpha >= 1 && !next)
+		{
+			let pos = self.pos;
+			pos.x += 40;
+			next = Actor.spawn('PK_TitleLetter_S', pos);
+		}
+	}
+
+	States
+	{
+		Spawn:
+			CRYS C 1 Bright;
+			Loop;
+	}
+}
+
+Class PK_TitleLetter_S : PK_TitleLetter
+{
+	Actor next;
+
+	override void Tick()
+	{
+		Super.tick();
+		
+		alpha += 0.114;
+		
+		if (alpha >= 1 && !next)
+		{
+			let pos = self.pos;
+			pos.x += 40;
+			next = Actor.spawn('PK_TitleLetter_T', pos);
+		}
+	}
+
+	States
+	{
+		Spawn:
+			CRYS D 1 Bright;
+			Loop;
+	}
+}
+
+Class PK_TitleLetter_T : PK_TitleLetter
+{
+	Actor next;
+
+	override void Tick()
+	{
+		Super.tick();
+		
+		alpha += 0.114;
+		
+		if (alpha >= 1 && !next)
+		{
+			let pos = self.pos;
+			pos.x += 40;
+			next = Actor.spawn('PK_TitleLetter_A', pos);
+		}
+	}
+
+	States
+	{
+		Spawn:
+			CRYS E 1 Bright;
+			Loop;
+	}
+}
+
+Class PK_TitleLetter_A : PK_TitleLetter
+{
+	Actor next;
+
+	override void Tick()
+	{
+		Super.tick();
+		
+		alpha += 0.114;
+		
+		if (alpha >= 1 && !next)
+		{
+			let pos = self.pos;
+			pos.x += 40;
+			next = Actor.spawn('PK_TitleLetter_L', pos);
+		}
+	}
+
+	States
+	{
+		Spawn:
+			CRYS F 1 Bright;
+			Loop;
+	}
+}
+
+Class PK_TitleLetter_L : PK_TitleLetter
+{
+	override void Tick()
+	{
+		Super.tick();
+		
+		alpha += 0.114;
+	}
+
+	States
+	{
+		Spawn:
+			CRYS G 1 Bright;
+			Loop;
+	}
+}
+
+Class PK_TitleAnim : Actor
+{
+	bool cansee;
+	
+	Default
+	{
+		//$Category Intro Animation
+		//$Title Title Animation
+	}
+
+	override void Tick()
+	{
+		Super.tick();
+		
+		let player = players[consoleplayer].mo;
+		
+		if (!cansee)
+		{
+			if (player.isVisible(self, true))
+			{
+				cansee = true;
+				SetStateLabel('See');
+			}
+		}
+		else
+		{
+			if (!player.isVisible(self, true))
+			{
+				cansee = false;
+				SetStateLabel('Spawn');
+			}
+		}
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 1;
+			Loop;
+		See:
+			TNT1 A 0 
+			{
+				players[consoleplayer].mo.A_StartSound("intro/whoosh", CHAN_AUTO);
+			}
+			TITL ABCDEFGHIJKLMNOPQRSTUVWX 1 Bright;
+			TNT1 A 0 S_ChangeMusic('TITLEMUS');
+		EndLoop:
+			TITL Y 1 Bright;
+			Loop;
+	}
+}

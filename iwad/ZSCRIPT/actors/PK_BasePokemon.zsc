@@ -1,0 +1,74 @@
+Class PK_BasePokemon : Actor
+{
+	int FaceMode;
+	Property FaceMode: FaceMode;
+	
+	int hp;
+	int attack;
+	int defense;
+	int speed;
+	int specAttack;
+	int specDefense;
+	int typeA;
+	int typeB;
+	
+	property hp: hp;
+	property attack: attack;
+	property defense: defense;
+	property speed: speed;
+	property specAttack: specAttack;
+	property specDefense: specDefense;
+	property typeA: typeA;
+	property typeB: typeB;
+	
+	default
+	{
+		PK_BasePokemon.FaceMode 0;
+		PK_BasePokemon.typeA NoType;
+		PK_BasePokemon.typeB NoType;
+	}
+	
+	States
+	{
+		Spawn:
+		Front:
+			DECA A -1;
+			stop;
+		Back:
+			DECA B -1;
+			stop;
+	}
+	
+	Action Void A_FaceForward()
+	{
+		Self.SetStateLabel("Front");
+	}
+	
+	Action Void A_FaceBackward()
+	{
+		Self.SetStateLabel("Back");
+	}
+}
+
+Enum Type
+{
+	Normal = 0,
+	Fire,
+	Water,
+	Grass,
+	Electric,
+	Ice,
+	Fighting,
+	Poison,
+	Ground,
+	Flying,
+	Psychic_Type,
+	Bug,
+	Rock,
+	Ghost,
+	Dragon_Type, //For GZDoom conflict avoidance
+	Dark,
+	Steel,
+	NumTypes,
+	NoType,
+}
