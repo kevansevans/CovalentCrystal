@@ -3,6 +3,7 @@ package rom;
 import sys.io.File;
 import haxe.io.Bytes;
 import crystal.BasePokemonData;
+import enums.DexNumber;
 
 /**
  * ...
@@ -10,7 +11,7 @@ import crystal.BasePokemonData;
  */
 class PaletteBuilder 
 {
-	public static inline var POKEMONCOLORS:Int = 0xAD3D;
+	public static inline var POKEMONCOLORS:Int = 0xA8D6;
 	
 	var translations:String = '';
 
@@ -42,19 +43,20 @@ class PaletteBuilder
 	
 	static inline function rgbConversion(_input:Int):Int
 	{
-		return Std.int((_input / 31) * 255);
+		return Std.int(_input * 8 + (Math.floor(_input / 4)));
 	}
 	
 	public static function getPokemonPalette(_dex:Int):PokePalette
 	{
 		var rom = RomRipper.romdata;
 		
-		var bytes = rom.slice(POKEMONCOLORS + (8 * _dex), POKEMONCOLORS + (8 * _dex) + 8);
+
+		var bytes = rom.slice(POKEMONCOLORS + (8 *_dex), POKEMONCOLORS + (8 *_dex) + 8);
 		
-		var colorA = bytes[0] + (bytes[1] * 0x100); 
-		var colorB = bytes[2] + (bytes[3] * 0x100); 
-		var colorC = bytes[4] + (bytes[5] * 0x100); 
-		var colorD = bytes[6] + (bytes[7] * 0x100); 
+		var colorA = bytes[0] + (bytes[1] << 8); 
+		var colorB = bytes[2] + (bytes[3] << 8); 
+		var colorC = bytes[4] + (bytes[5] << 8); 
+		var colorD = bytes[6] + (bytes[7] << 8); 
 		
 		var palette:PokePalette =
 		{
