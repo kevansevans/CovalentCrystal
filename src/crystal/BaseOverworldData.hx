@@ -54,7 +54,7 @@ class BaseOverworldData
 			numsprites : 6
 		},
 		{
-			name : "Elder",
+			name : "Janine",
 			facemode : 1,
 			numsprites : 6
 		},
