@@ -3,7 +3,7 @@ package enums;
 /**
  * @author Kaelan
  */
-enum abstract Pokemon(Int) from Int to Int 
+enum abstract DexNumber(Int) from Int to Int 
 {
 	var Bulbasaur;
 	var Ivysaur;
@@ -157,9 +157,105 @@ enum abstract Pokemon(Int) from Int to Int
 	var Mewtwo;
 	var Mew;
 	
+	var Chikorita;
+	var Bayleef;
+	var Meganium;
+	var Cyndaquil;
+	var Quilava;
+	var Typhlosion;
+	var Totodile;
+	var Croconaw;
+	var Feraligator;
+	var Sentret;
+	var Furret;
+	var Hoothoot;
+	var Noctowl;
+	var Ledyba;
+	var Ledian;
+	var Spinarak;
+	var Ariados;
+	var Crobat;
+	var Chinchou;
+	var Lanturn;
+	var Pichu;
+	var Cleffa;
+	var Igglybuff;
+	var Togepi;
+	var Togetic;
+	var Natu;
+	var Xatu;
 	var Mareep;
-	
+	var Flaafy;
+	var Ampharos;
+	var Bellossom;
+	var Marill;
+	var Azumarill;
+	var Sudowoodo;
+	var Politoed;
+	var Hoppip;
+	var Skiploom;
+	var Jumpluff;
+	var Aipom;
+	var Sunkern;
+	var Sunflora;
+	var Yanma;
+	var Wooper;
+	var Quagsire;
+	var Espeon;
+	var Umbreon;
+	var Murkrow;
+	var Slowking;
+	var Misdreavous;
+	var Unown = 200;
+	var Wobuffet;
+	var Girafarig;
+	var Pineco;
+	var Forretress;
+	var Dunsparce;
+	var Gligar;
+	var Steelix;
+	var Snubbull;
+	var Granbull;
+	var Qwilfish;
+	var Scizor;
+	var Shuckle;
+	var Heracross;
+	var Sneasel;
+	var Teddiursa;
+	var Ursaring;
+	var Slugma;
+	var Magcargo;
+	var Swinub;
+	var Piloswine;
+	var Corsola;
 	var Remoraid;
+	var Octillery;
+	var Delibird;
+	var Mantine;
+	var Skarmory;
+	var Houndour;
+	var Houndoom;
+	var Kingdra;
+	var Phanpy;
+	var Donphan;
+	var Porygon2;
+	var Stantler;
+	var Smeargle;
+	var Tyrogue;
+	var Smoochum;
+	var Elekid;
+	var Magby;
+	var Miltank;
+	var Blissey;
+	var Raikou;
+	var Entei;
+	var Suicune;
+	var Larvitar;
+	var Pupitar;
+	var Tyranitar;
+	var Lugia;
+	var Ho_oh;
+	var Celebi;
 	
 	var NUMPOKEMON:Int;
 }

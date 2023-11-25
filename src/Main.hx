@@ -96,6 +96,8 @@ class Main
 		
 		new ZScriptBuilder();
 		
+		new EdNumBuilder();
+		
 		WadBuilder.zipwad();
 	}
 	
@@ -116,7 +118,6 @@ class Main
 		
 		new RomRipper(File.getBytes('./' + _path));
 	}
-	
 }
 
 enum abstract CrystalHashes(String) from String to String

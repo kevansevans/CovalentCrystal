@@ -8,6 +8,7 @@ import crystal.BaseOverworldData;
 import crystal.BasePokemonData;
 import enums.Overworld;
 import enums.PokemonType;
+import enums.DexNumber;
 
 /**
  * ...
@@ -51,6 +52,8 @@ class ZScriptBuilder
 		
 		for (pk in 0...251)
 		{
+			if (pk == DexNumber.Unown) continue;
+			
 			var pokedata = RomRipper.getPokemonData(pk);
 			var actor = new PokemonActor(pokedata);
 			
@@ -81,13 +84,14 @@ class PokemonActor
 	public function toZFile():String
 	{
 		var lumps = FileSystem.readDirectory('./wad/SPRITES/pokemon');
-		var offset = ((data.dexnum - 1) * 2) + 1;
+		var offset = ((data.dexnum - 1) * 2) + 1 - (data.dexnum > 200 ? 1 : 0);
 		
 		var output = 'Class PK_${name} : PK_BasePokemon\n';
 		output += '{\n';
 		output += '\tDefault\n';
 		output += '\t{\n';
-		output += '\t\tPK_BasePokemon.hp ${data.hp};\n';
+		output += '\t\tSpeed 1;\n';
+		output += '\t\t';
 		output += '\t\tPK_BasePokemon.attack ${data.atk};\n';
 		output += '\t\tPK_BasePokemon.defense ${data.def};\n';
 		output += '\t\tPK_BasePokemon.speed ${data.spd};\n';
@@ -103,13 +107,14 @@ class PokemonActor
 		output += '\t{\n';
 		output += '\t\tSpawn:\n';
 		output += '\t\tFront:\n';
-		output += '\t\t\t${lumps[offset].substr(0, 4)} A -1;\n';
-		output += '\t\t\tStop;\n';
+		output += '\t\t\t${lumps[offset].substr(0, 4)} A 1 A_Wander();\n';
+		output += '\t\t\tLoop;\n';
 		output += '\t\tBack:\n';
 		output += '\t\t\t${lumps[offset + 1].substr(0, 4)} A -1;\n';
 		output += '\t\t\tStop;\n';
 		output += '\t}\n';
 		output += '}\n';
+		
 		
 		return output;
 	}
