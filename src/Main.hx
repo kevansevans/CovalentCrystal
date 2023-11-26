@@ -47,6 +47,8 @@ class Main
 	
 	static function main()
 	{
+		ManualAssets.buildZipWad(0);
+		
 		Sys.println("////////////////////");
 		Sys.println("Covalent Crystal " + GAMEVERSION);
 		Sys.println("This is a free project made with love!");
