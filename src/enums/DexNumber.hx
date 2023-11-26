@@ -206,7 +206,7 @@ enum abstract DexNumber(Int) from Int to Int
 	var Murkrow;
 	var Slowking;
 	var Misdreavous;
-	var Unown = 200;
+	var Unown;
 	var Wobuffet;
 	var Girafarig;
 	var Pineco;
@@ -254,7 +254,7 @@ enum abstract DexNumber(Int) from Int to Int
 	var Pupitar;
 	var Tyranitar;
 	var Lugia;
-	var Ho_oh;
+	var HoOh;
 	var Celebi;
 	
 	var NUMPOKEMON:Int;
