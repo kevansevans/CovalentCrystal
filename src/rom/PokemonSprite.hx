@@ -26,6 +26,8 @@ class PokemonSprite
 		{
 			if (pk == 200) continue;
 			
+			if (Main.VERBOSE) Sys.println('Extracting # ${StringTools.lpad("" + (pk + 1), "0", 3)}/251 front and back sprites...');
+			
 			var frontbank = rom[POKEMONPOINTER + (pk * 6)] + 0x35;
 			var frontoffset = (rom[POKEMONPOINTER + (pk * 6) + 2] * 0x100) + rom[POKEMONPOINTER + (pk * 6) + 1];
 			var frontpos = (frontbank * 0x4000) + frontoffset;
@@ -41,13 +43,17 @@ class PokemonSprite
 			var frontpic = PictureSprites.ripSprite(frontpos, pokedata.spritesize >> 4, pokedata.spritesize >> 4);
 			var backpic = PictureSprites.ripSprite(backpos, 6, 6);
 			
+			if (Main.VERBOSE) Sys.println('Writing front #${StringTools.lpad("" + (pk + 1), "0", 3)}/251 as ./wad/SPRITES/pokemon/${spname}A0.lmp...');
 			Export.writePicture(frontpic, './wad/SPRITES/pokemon/${spname}A0.lmp');
+			if (Main.VERBOSE) Sys.println('Writing back #${StringTools.lpad("" + (pk + 1), "0", 3)}/251 as ./wad/SPRITES/pokemon/${spname}B0.lmp...');
 			Export.writePicture(backpic, './wad/SPRITES/pokemon/${spname}B0.lmp');
 		}
 		
 		Sys.println('Ripping unown sprites');
 		for (un in 0...26)
 		{
+			if (Main.VERBOSE) Sys.println('Extracting #${StringTools.lpad("" + (un + 1), "0", 2)}/26 front and back sprites...');
+			
 			var frontbank = rom[UNOWNPOINTER + (un * 6)] + 0x35;
 			var frontoffset = (rom[UNOWNPOINTER + (un * 6) + 2] * 0x100) + rom[UNOWNPOINTER + (un * 6) + 1];
 			var frontpos = (frontbank * 0x4000) + frontoffset;
@@ -63,7 +69,9 @@ class PokemonSprite
 			var frontpic = PictureSprites.ripSprite(frontpos, pokedata.spritesize >> 4, pokedata.spritesize >> 4);
 			var backpic = PictureSprites.ripSprite(backpos, 6, 6);
 			
+			if (Main.VERBOSE) Sys.println('Writing front #${StringTools.lpad("" + (un + 1), "0", 2)}/26 as ./wad/SPRITES/pokemon/${spname}A0.lmp...');
 			Export.writePicture(frontpic, './wad/SPRITES/pokemon/${spname}A0.lmp');
+			if (Main.VERBOSE) Sys.println('Writing back #${StringTools.lpad("" + (un + 1), "0", 2)}/26 as ./wad/SPRITES/pokemon/${spname}B0.lmp...');
 			Export.writePicture(backpic, './wad/SPRITES/pokemon/${spname}B0.lmp');
 		}
 	}

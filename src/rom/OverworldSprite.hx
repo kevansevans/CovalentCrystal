@@ -2,14 +2,8 @@ package rom;
 
 import doom.Export;
 import gameboy.GBSprite;
-import haxe.io.Bytes;
-import haxe.io.BytesOutput;
-import crystal.BaseOverworldData;
-import enums.Overworld;
 import doom.Post;
 import doom.Picture;
-import sys.io.File;
-import sys.FileSystem;
 
 /**
  * ...
@@ -17,6 +11,17 @@ import sys.FileSystem;
  */
 class OverworldSprite 
 {
+	public static inline var bankoffset:Int = 0x4000;
+	
+	public function new()
+	{
+		Sys.println('Ripping overworld sprites...');
+		for (i in 0...512)
+		{
+			if (Main.VERBOSE) Sys.println('Extracting overworld sprite ${i + 1}/512...');
+			dumpOverworldSprites(0x30 * bankoffset, i);
+		}
+	}
 
 	public static function dumpOverworldSprites(_offset:Int, _sprite:Int = 0)
 	{
@@ -51,6 +56,7 @@ class OverworldSprite
 			posts : posts.copy()
 		}
 		
+		if (Main.VERBOSE) Sys.println('Writing overworld sprite as O${StringTools.hex(_sprite, 3)}A0.lmp...');
 		Export.writePicture(picture, './wad/SPRITES/overworld/O${StringTools.hex(_sprite, 3)}A0.lmp');
 	}
 }

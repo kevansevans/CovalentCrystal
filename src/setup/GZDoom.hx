@@ -2,7 +2,6 @@ package setup;
 
 import haxe.Json;
 import sys.FileSystem;
-import haxe.zip.Reader;
 import sys.io.File;
 import haxe.io.BytesOutput;
 import haxe.Http;
@@ -15,6 +14,8 @@ class GZDoom
 {
 	public static function download()
 	{
+		if (!FileSystem.exists('./GZDoom')) FileSystem.createDirectory('./GZDoom');
+		
 		var apiurl:String = "https://api.github.com/repos/ZDoom/gzdoom/releases/latest";
 		var request = new Http(apiurl);
 		
@@ -34,24 +35,26 @@ class GZDoom
 			}
 		}
 		
-		request.onStatus = function(_status)
-		{
-			trace(_status);
-		}
-		
 		request.setHeader('User-Agent', 'CovalentCrystal');
 		request.request();
+		
+		if (Main.VERBOSE) Sys.println('Requesting latest GZDoom from https://api.github.com/repos/ZDoom/gzdoom/releases/latest');
 	}
 	
 	static function downloadPackage(_durl:String) 
 	{
+		if (Main.VERBOSE) Sys.println('Downloading latest GZDoom from https://api.github.com/repos/ZDoom/gzdoom/releases/latest');
+		
 		var request:Http = new Http(_durl);
 		request.setHeader('User-Agent', 'CovalentCrystal');
+		
+		var filebytes:BytesOutput;
+		
 		request.onData = function(_data)
 		{
 			var filerequest = new Http(request.responseHeaders['Location']);
 			filerequest.setHeader('User-Agent', 'CovalentCrystal');
-			var filebytes:BytesOutput = new BytesOutput();
+			filebytes = new BytesOutput();
 			
 			filerequest.customRequest(false, filebytes);
 			
@@ -59,49 +62,16 @@ class GZDoom
 			
 			File.saveBytes('./gzdoom.zip', filebytes.getBytes());
 			
-			extractFiles();
+			ZipManager.extract('./gzdoom.zip', './gzdoom', true);
+			
+			Main.USERCONFIG.sourceport = true;
+			Main.saveConfig();
 		}
 		
 		request.request();
+		
+		while (filebytes == null) {}
 	}
 	
-	static function extractFiles() 
-	{
-		var zip = File.read('./gzdoom.zip');
-		var entries = Reader.readZip(zip);
-		zip.close();
-		
-		for (entry in entries)
-		{
-			var filename = entry.fileName;
-			if (filename.charAt(0) != "/" && filename.charAt(0) != "\\" && filename.split("..").length <= 1)
-			{
-				var dirs = ~/[\/\\]/g.split(filename);
-				
-				var path = "";
-				var file = dirs.pop();
-				for (d in dirs)
-				{
-					path += d;
-					FileSystem.createDirectory("./GZDoom/" + path);
-					path += "/";
-				}
-				
-				if (file == "")
-				{
-					continue;
-				}
-				
-				path += file;
-				Sys.println("Created " + path);
-				
-				var data = Reader.unzip(entry);
-				var f = File.write("./GZDoom/" + path, true);
-				f.write(data);
-				f.close();
-			}
-		}
-		
-		FileSystem.deleteFile('./gzdoom.zip');
-	}
+	
 }
