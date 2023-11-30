@@ -107,8 +107,8 @@ class PokemonActor
 		output += '\t{\n';
 		output += '\t\tSpawn:\n';
 		output += '\t\tFront:\n';
-		output += '\t\t\t${lumps[offset].substr(0, 4)} A 1 A_Wander();\n';
-		output += '\t\t\tLoop;\n';
+		output += '\t\t\t${lumps[offset].substr(0, 4)} A -1;\n';
+		output += '\t\t\tStop;\n';
 		output += '\t\tBack:\n';
 		output += '\t\t\t${lumps[offset + 1].substr(0, 4)} A -1;\n';
 		output += '\t\t\tStop;\n';
