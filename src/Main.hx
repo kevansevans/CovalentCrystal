@@ -1,19 +1,20 @@
 package;
 
-import doom.EdNumBuilder;
 import haxe.crypto.Md5;
 import haxe.io.Bytes;
 import haxe.Json;
 import sys.io.File;
 import sys.FileSystem;
 
-import setup.GZDoom;
+import macros.ManualAssets;
+
+import ipk3.WadBuilder;
+import doom.EdNumBuilder;
 import doom.PatchBuilder;
 import doom.ZScriptBuilder;
 import rom.RomRipper;
-import ipk3.WadBuilder;
-
-import macros.ManualAssets;
+import setup.GZDoom;
+import setup.Freedoom;
 
 /**
  * ...
@@ -25,6 +26,9 @@ import macros.ManualAssets;
  * Credits:
  * 	Pokemon Crystal Disassembly: https://github.com/pret/pokecrystal
  * 	PRET Discord: https://discord.gg/d5dubZ3
+ * 
+ * Thank you JaaShooUhh!
+ * 	https://github.com/pokemon-speedrunning/symfiles/blob/master/pokecrystal.sym
  */
 class Main 
 {
@@ -63,12 +67,17 @@ class Main
 		
 		verifyProfile();
 		
-		if (!USERCONFIG.sourceport) 
+		if (!USERCONFIG.sourceport || REPAIR) 
 		{
-			Sys.println('Downloading latest Doom source port...');
+			Sys.println('Downloading latest GZDoom source port...');
 			GZDoom.download();
 		}
-		if (!USERCONFIG.romextracted) 
+		if (!USERCONFIG.freedoom || REPAIR)
+		{
+			Sys.println('Downloading latest Freedoom...');
+			Freedoom.download();
+		}
+		if (!USERCONFIG.romextracted || REPAIR) 
 		{
 			Sys.println('Unpackaging assets...');
 			WadBuilder.assemble();
@@ -79,12 +88,17 @@ class Main
 			new ZScriptBuilder();
 			new EdNumBuilder();
 			new PatchBuilder();
+			USERCONFIG.romextracted = true;
 			
 			Sys.println('Zipping wad...');
 			WadBuilder.zipwad();
-			
-			USERCONFIG.romextracted = true;
+			#if !debug
+			Sys.println('Cleaning up...');
+			WadBuilder.clearWadFolder();
+			#end
 		}
+		
+		saveConfig();
 		
 		error(ISSUE);
 		
@@ -93,7 +107,10 @@ class Main
 	
 	public function new()
 	{
-		if (USERCONFIG.autostart) launchGame();
+		if (USERCONFIG.autostart) {
+			Sys.println('Launching!');
+			launchGame();
+		}
 		
 		Sys.exit(0);
 	}
@@ -137,12 +154,7 @@ class Main
 	static function launchGame() 
 	{
 		Sys.setCwd(VKDOOM == true ? VKDIR : GZDIR);
-		
-		#if debug
-		Sys.command('${VKDOOM ? VKDIR : GZDIR} -File covalent.pk3');
-		#else
-		Sys.command('${VKDOOM ? VKDIR : GZDIR} -Iwad covalent.pk3');
-		#end
+		Sys.command('${VKDOOM ? VKDIR : GZDIR} -File covalent.pk3 -IWAD freedoom2.wad');
 	}
 	
 	static function loadUserProfile() 
@@ -161,6 +173,7 @@ class Main
 			autostart : true,
 			romextracted : false,
 			sourceport : false,
+			freedoom : false,
 			usevkdoom : false
 		}
 		
@@ -174,10 +187,11 @@ class Main
 		#if debug
 		USERCONFIG.romextracted = false; //always recompile
 		#else
-		if (!FileSystem.exists('./GZDoom/covalent.ipk3') || REPAIR) USERCONFIG.romextracted = false;
+		if (!FileSystem.exists('./GZDoom/covalent.pk3') || REPAIR) USERCONFIG.romextracted = false;
 		#end
 		
 		if (!FileSystem.exists('./gzdoom/gzdoom.pk3') || REPAIR) USERCONFIG.sourceport = false;
+		if (!FileSystem.exists('./gzdoom/freedoom2.wad') || REPAIR) USERCONFIG.freedoom = false;
 	}
 	
 	public static function saveConfig()
@@ -238,5 +252,6 @@ typedef Userconfig =
 	var autostart:Bool;
 	var romextracted:Bool;
 	var sourceport:Bool;
+	var freedoom:Bool;
 	var usevkdoom:Bool;
 }
