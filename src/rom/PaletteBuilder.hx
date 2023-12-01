@@ -32,7 +32,8 @@ class PaletteBuilder
 			if (baseinfo != null) {
 				translations += '${baseinfo.name}Normal = "1:1=[${rgbConversion(palette.normal.indexB.R)}, ${rgbConversion(palette.normal.indexB.G)}, ${rgbConversion(palette.normal.indexB.B)}]:[${rgbConversion(palette.normal.indexB.R)}, ${rgbConversion(palette.normal.indexB.G)}, ${rgbConversion(palette.normal.indexB.B)}]", ';
 				translations += '"2:2=[${rgbConversion(palette.normal.indexC.R)}, ${rgbConversion(palette.normal.indexC.G)}, ${rgbConversion(palette.normal.indexC.B)}]:[${rgbConversion(palette.normal.indexC.R)}, ${rgbConversion(palette.normal.indexC.G)}, ${rgbConversion(palette.normal.indexC.B)}]", ';
-				translations += '"3:3=[0, 0, 0]:[0, 0, 0]"\n';
+				translations += '"3:3=[0, 0, 0]:[0, 0, 0]", ';
+				translations += '"4:4=[255, 255, 255]:[255, 255, 255]"\n';
 			}
 		}
 		
