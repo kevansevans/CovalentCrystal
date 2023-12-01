@@ -48,7 +48,7 @@ class Main
 	
 	static function main()
 	{
-		ManualAssets.buildZipWad(0);
+		ManualAssets.buildZipAssets();
 		
 		Sys.println("////////////////////");
 		Sys.println("Covalent Crystal " + GAMEVERSION);

@@ -19,14 +19,6 @@ class WadBuilder
 		}
 		ZipManager.extract('./assets.zip', './wad', false);
 		
-		if (!FileSystem.isDirectory('./wad')) FileSystem.createDirectory('./wad');
-		else
-		{
-			clearFolder('./wad/srpites/pokemon/');
-			clearFolder('./wad/srpites/overworld/');
-			clearFolder('./wad/srpites/trainer/');
-		}
-		
 		FileSystem.createDirectory('./wad/SPRITES');
 		FileSystem.createDirectory('./wad/SPRITES/pokemon');
 		FileSystem.createDirectory('./wad/SPRITES/overworld');
@@ -36,29 +28,26 @@ class WadBuilder
 		FileSystem.createDirectory('./wad/ZSCRIPT/actors/NPC');
 	}
 	
-	static function clearFolder(_path:String)
+	public static function clearWadFolder()
+	{
+		if (FileSystem.exists('./wad')) deleteFiles('./wad');
+	}
+	
+	public static function deleteFiles(_path:String)
 	{
 		var items = FileSystem.readDirectory(_path);
-		if (items == null) return;
 		
-		for (item in items)
+		for (file in items)
 		{
-			if (FileSystem.isDirectory(_path + '/$item'))
-			{
-				clearFolder(_path + '/$item');
-				FileSystem.deleteDirectory(_path + '/$item');
+			if (FileSystem.isDirectory(_path + '/$file')) {
+				deleteFiles(_path + '/$file');
 				continue;
 			}
 			
-			try
-			{
-				FileSystem.deleteFile(_path + '/$item');
-			}
-			catch (_result:String)
-			{
-				trace(_result);
-			}
+			FileSystem.deleteFile(_path + '/$file');
 		}
+		
+		FileSystem.deleteDirectory(_path);
 	}
 	
 	public static function zipwad()

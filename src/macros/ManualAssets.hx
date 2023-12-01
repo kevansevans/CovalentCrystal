@@ -14,11 +14,31 @@ import sys.io.File;
 class ManualAssets 
 {
 
-	public macro static function buildZipWad(e:Expr)
+	public macro static function buildZipAssets()
 	{
+		if (FileSystem.exists('./bin/wad')) deleteFiles('./bin/wad');
+		if (FileSystem.exists('./bin/gzdoom')) deleteFiles('./bin/gzdoom');
+		
 		if (!FileSystem.isDirectory('./bin')) FileSystem.createDirectory('./bin');
 		compress('./iwad/', './bin/assets.zip');
-		return macro $e;
+		return macro null;
+	}
+	
+	static function deleteFiles(_path:String)
+	{
+		var items = FileSystem.readDirectory(_path);
+		
+		for (file in items)
+		{
+			if (FileSystem.isDirectory(_path + '/$file')) {
+				deleteFiles(_path + '/$file');
+				continue;
+			}
+			
+			FileSystem.deleteFile(_path + '/$file');
+		}
+		
+		FileSystem.deleteDirectory(_path);
 	}
 	
 	public static function compress(_path:String, _desitnation:String)
