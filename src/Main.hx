@@ -8,6 +8,7 @@ import sys.io.File;
 import sys.FileSystem;
 
 import setup.GZDoom;
+import doom.PatchBuilder;
 import doom.ZScriptBuilder;
 import rom.RomRipper;
 import ipk3.WadBuilder;
@@ -77,6 +78,7 @@ class Main
 			new RomRipper(ROM);
 			new ZScriptBuilder();
 			new EdNumBuilder();
+			new PatchBuilder();
 			
 			Sys.println('Zipping wad...');
 			WadBuilder.zipwad();
