@@ -1,0 +1,12 @@
+class PK_Player : PlayerPawn
+{
+	Default
+	{
+		Player.DisplayName "Some 11 year old child, where's this kid's father figure?";
+	}
+	
+	override void BeginPlay()
+	{
+		Super.BeginPlay();
+	}
+}
