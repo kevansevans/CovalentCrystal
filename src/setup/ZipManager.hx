@@ -118,6 +118,9 @@ class ZipManager
 	
 	static function getFileBytes(_path:String):Bytes
 	{
-		return Bytes.ofData(File.getBytes(_path).getData());
+		var file = File.read(_path);
+		var bytes = file.readAll();
+		file.close();
+		return bytes;
 	}
 }
