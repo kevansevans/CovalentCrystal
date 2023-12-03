@@ -42,3 +42,11 @@ bin/wad/SPRITES/rips/
 bin/
 
 dump/
+
+*.dbs
+
+*.backup1
+
+*.backup2
+
+*.backup3
