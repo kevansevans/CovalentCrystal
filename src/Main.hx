@@ -29,6 +29,10 @@ import setup.Freedoom;
  * 
  * Thank you JaaShooUhh!
  * 	https://github.com/pokemon-speedrunning/symfiles/blob/master/pokecrystal.sym
+ * 
+ * Drawing sprites on hud like a weapon:
+ * 	Have class inherit from CustomInventory and use A_Overlay
+ * 	https://forum.zdoom.org/viewtopic.php?f=3&t=54909
  */
 class Main 
 {
@@ -45,6 +49,7 @@ class Main
 	public static var VKDOOM:Bool = false;
 	public static var IGNOREOS:Bool = false;
 	public static var AUTOSTART:Bool = true;
+	public static var WADONLY:Bool = false;
 	
 	public static var ROM:Bytes;
 	
@@ -69,13 +74,19 @@ class Main
 		
 		if (!USERCONFIG.sourceport || REPAIR) 
 		{
-			Sys.println('Downloading latest GZDoom source port...');
-			GZDoom.download();
+			if (!WADONLY)
+			{
+				Sys.println('Downloading latest GZDoom source port...');
+				GZDoom.download();
+			}
 		}
 		if (!USERCONFIG.freedoom || REPAIR)
 		{
-			Sys.println('Downloading latest Freedoom...');
-			Freedoom.download();
+			if (!WADONLY)
+			{
+				Sys.println('Downloading latest Freedoom...');
+				Freedoom.download();
+			}
 		}
 		if (!USERCONFIG.romextracted || REPAIR) 
 		{
@@ -107,7 +118,7 @@ class Main
 	
 	public function new()
 	{
-		if (USERCONFIG.autostart) {
+		if (USERCONFIG.autostart && !WADONLY) {
 			Sys.println('Launching!');
 			launchGame();
 		}
@@ -154,7 +165,7 @@ class Main
 	static function launchGame() 
 	{
 		Sys.setCwd(VKDOOM == true ? VKDIR : GZDIR);
-		Sys.command('${VKDOOM ? VKDIR : GZDIR} -File covalent.pk3 -IWAD freedoom2.wad');
+		Sys.command('${VKDOOM ? VKDIR : GZDIR} -File covalent.pk3 -IWAD freedoom2.wad -warp 1');
 	}
 	
 	static function loadUserProfile() 
@@ -224,6 +235,8 @@ class Main
 					USERCONFIG.usevkdoom = true;
 				case '-REPAIR':
 					REPAIR = true;
+				case '-WADONLY':
+					WADONLY = true;
 				default:
 					Sys.println('Unrecognized command: ${arg}!');
 			}

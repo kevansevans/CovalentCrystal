@@ -79,6 +79,8 @@ class ZipManager
 		
 		for (file in getItems(_path))
 		{
+			if (!checkExtension(file)) continue;
+			
 			var path = haxe.io.Path.join([_path, file]);
 			if (isFolder(path))
 			{
@@ -87,7 +89,7 @@ class ZipManager
 			}
 			
 			var bytes = getFileBytes(path);
-			var filename = path.substring(_inDir - 2); //Path.join doesn't return the expected string, so this needs to be adjusted by 2
+			var filename = path.substring(_inDir - 2); //Path.join (see above) doesn't return the expected string, so this needs to be adjusted by 2
 			
 			var entry:Entry =
 			{
@@ -104,6 +106,18 @@ class ZipManager
 		}
 		
 		return _entries;
+	}
+	
+	static function checkExtension(_input:String):Bool
+	{
+		var blacklist:Array<String> = ['.dbs', '.backup1', '.backup2', '.backup3'];
+		
+		for (item in blacklist)
+		{
+			if (_input.lastIndexOf(item) != -1) return false; 
+		}
+		
+		return true;
 	}
 	
 	static function getItems(_path:String):Array<String>
