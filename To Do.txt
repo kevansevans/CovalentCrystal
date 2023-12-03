@@ -1,0 +1,12 @@
+Find and rip map tiles
+
+Find and rip map palettes
+
+Pokemon animations: https://pret.github.io/pokecrystal/pic_animations.html
+
+work on player avatar
+
+research how to rip sounds and music
+
+work on storing trainer data in some form
+	-Add friends of crimes as easter eggs in battle tower as trainers
