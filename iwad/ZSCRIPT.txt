@@ -2,6 +2,7 @@ version "4.10"
 
 #include "ZSCRIPT/actors/PK_BaseActor.zsc"
 #include "ZSCRIPT/actors/PK_BasePokemon.zsc"
+#include "ZSCRIPT/actors/Pokemon/PK_Unown.zsc"
 
 #include "ZSCRIPT/intro/PK_TitleMapEvent.zsc"
 #include "ZSCRIPT/intro/PK_IntroAnimation.zsc"

@@ -12,6 +12,11 @@ Class PK_BasePokemon : Actor
 	int typeA;
 	int typeB;
 	
+	string normalColors;
+	string shinyColors;
+	property normalColors: normalColors;
+	property shinyColors: shinyColors;
+	
 	property hp: hp;
 	property attack: attack;
 	property defense: defense;
@@ -26,6 +31,25 @@ Class PK_BasePokemon : Actor
 		PK_BasePokemon.FaceMode 0;
 		PK_BasePokemon.typeA NoType;
 		PK_BasePokemon.typeB NoType;
+	}
+	
+	override void PostBeginPlay()
+	{
+		Super.postBeginPlay();
+		
+		A_SetTranslation(self.normalColors);
+	}
+	
+	bool shiny;
+	
+	override bool Used(Actor user)
+	{
+		if (shiny) A_SetTranslation(self.normalColors);
+		if (!shiny) A_SetTranslation(self.shinyColors);
+		
+		shiny = !shiny;
+		
+		return false;
 	}
 	
 	States

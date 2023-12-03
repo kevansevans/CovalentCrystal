@@ -1,0 +1,26 @@
+Class PK_Unown : PK_BasePokemon
+{
+	default
+	{
+		PK_BasePokemon.normalColors "unownNormal";
+		PK_BasePokemon.shinyColors "unownShiny";
+	}
+
+	override void PostBeginPlay()
+	{
+		Super.postBeginPlay();
+		
+		if (self.args[0] != 0) self.frame = self.args[0] - 1;
+	}
+	
+	States
+	{
+		Spawn:
+		Front:
+			UNOA ABCDEFGHIJKLMNOPQRSTUVWXYZ -1;
+			stop;
+		Back:
+			UNOB ABCDEFGHIJKLMNOPQRSTUVWXYZ -1;
+			stop;
+	}
+}
