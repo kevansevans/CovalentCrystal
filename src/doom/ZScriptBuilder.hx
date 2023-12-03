@@ -91,7 +91,8 @@ class PokemonActor
 		output += '\tDefault\n';
 		output += '\t{\n';
 		output += '\t\tSpeed 1;\n';
-		output += '\t\t';
+		output += '\t\tPK_BasePokemon.normalColors "${name}Normal";\n';
+		output += '\t\tPK_BasePokemon.shinyColors "${name}Shiny";\n';
 		output += '\t\tPK_BasePokemon.attack ${data.atk};\n';
 		output += '\t\tPK_BasePokemon.defense ${data.def};\n';
 		output += '\t\tPK_BasePokemon.speed ${data.spd};\n';
@@ -100,7 +101,6 @@ class PokemonActor
 		output += '\t\tPK_BasePokemon.typeA ${getType(data.typeA)};\n';
 		output += '\t\tPK_BasePokemon.typeB ${getType(data.typeB)};\n';
 		output += '\t\t\n';
-		output += '\t\tTranslation "${name}Normal";\n';
 		output += '\t}\n';
 		output += '\t\n';
 		output += '\tStates\n';

@@ -4,6 +4,8 @@ import haxe.io.Bytes;
 import haxe.io.BytesOutput;
 import sys.io.File;
 
+import gameboy.GBSprite;
+
 /**
  * ...
  * @author Kaelan
@@ -125,5 +127,46 @@ class Export
 		}
 		
 		return posts;
+	}
+	
+	public static function spritesToPicture(_data:Array<Int>, _width:Int, _height:Int)
+	{
+		var posts:Array<Post> = [];
+		var sprites:Array<GBSprite> = GBSprite.spritesFromData(_data);
+		
+		var index:Int = _height * -1;
+		
+		sprites = sprites.slice(0, _width * _height);
+		
+		var spindex:Int = 0;
+		
+		for (col in 0...(8 * _width))
+		{
+			if (col % 8 == 0) index += _height;
+			
+			var column:Array<Int> = [];
+			
+			for (row in 0..._width)
+			{
+				var sprite = sprites[index + row];
+				if (sprite == null) sprite = GBSprite.emptySprite;
+				var strip = sprite.getVerticalStrip(col % 8);
+				for (pixel in strip) column.push(pixel);
+			}
+			
+			var items:Array<Post> = Export.pixelsToPosts(column, col);
+			for (item in items) posts.push(item);
+		}
+		
+		var picture:Picture =
+		{
+			width : 8 * _width,
+			height : 8 * _height,
+			xoffset : 4 * _width,
+			yoffset : 8 * _height,
+			posts : posts
+		}
+		
+		return picture;
 	}
 }

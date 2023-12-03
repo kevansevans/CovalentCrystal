@@ -7,6 +7,8 @@ import sys.FileSystem;
 import haxe.io.Bytes;
 import enums.DexNumber;
 import enums.PokemonType;
+import doom.Picture;
+import gameboy.GBSprite;
 
 /**
  * ...
@@ -40,8 +42,8 @@ class PokemonSprite
 			
 			var spname:String = "P" + StringTools.hex(pk, 3);
 			
-			var frontpic = PictureSprites.ripSprite(frontpos, pokedata.spritesize >> 4, pokedata.spritesize >> 4);
-			var backpic = PictureSprites.ripSprite(backpos, 6, 6);
+			var frontpic = ripSprite(frontpos, pokedata.spritesize >> 4, pokedata.spritesize >> 4);
+			var backpic = ripSprite(backpos, 6, 6);
 			
 			if (Main.VERBOSE) Sys.println('Writing front #${StringTools.lpad("" + (pk + 1), "0", 3)}/251 as ./wad/SPRITES/pokemon/${spname}A0.lmp...');
 			Export.writePicture(frontpic, './wad/SPRITES/pokemon/${spname}A0.lmp');
@@ -50,6 +52,7 @@ class PokemonSprite
 		}
 		
 		Sys.println('Ripping unown sprites');
+		var alphabet:Array<String> = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 		for (un in 0...26)
 		{
 			if (Main.VERBOSE) Sys.println('Extracting #${StringTools.lpad("" + (un + 1), "0", 2)}/26 front and back sprites...');
@@ -64,15 +67,22 @@ class PokemonSprite
 			
 			var pokedata = RomRipper.getPokemonData(200);
 			
-			var spname:String = "U" + StringTools.hex(un, 3);
+			var spnameA:String = "UNOA" + alphabet[un];
+			var spnameB:String = "UNOB" + alphabet[un];
 			
-			var frontpic = PictureSprites.ripSprite(frontpos, pokedata.spritesize >> 4, pokedata.spritesize >> 4);
-			var backpic = PictureSprites.ripSprite(backpos, 6, 6);
+			var frontpic = ripSprite(frontpos, pokedata.spritesize >> 4, pokedata.spritesize >> 4);
+			var backpic = ripSprite(backpos, 6, 6);
 			
-			if (Main.VERBOSE) Sys.println('Writing front #${StringTools.lpad("" + (un + 1), "0", 2)}/26 as ./wad/SPRITES/pokemon/${spname}A0.lmp...');
-			Export.writePicture(frontpic, './wad/SPRITES/pokemon/${spname}A0.lmp');
-			if (Main.VERBOSE) Sys.println('Writing back #${StringTools.lpad("" + (un + 1), "0", 2)}/26 as ./wad/SPRITES/pokemon/${spname}B0.lmp...');
-			Export.writePicture(backpic, './wad/SPRITES/pokemon/${spname}B0.lmp');
+			if (Main.VERBOSE) Sys.println('Writing front #${StringTools.lpad("" + (un + 1), "0", 2)}/26 as ./wad/SPRITES/pokemon/${spnameA}0.lmp...');
+			Export.writePicture(frontpic, './wad/SPRITES/pokemon/${spnameA}0.lmp');
+			if (Main.VERBOSE) Sys.println('Writing back #${StringTools.lpad("" + (un + 1), "0", 2)}/26 as ./wad/SPRITES/pokemon/${spnameB}0.lmp...');
+			Export.writePicture(backpic, './wad/SPRITES/pokemon/${spnameB}0.lmp');
 		}
+	}
+	
+	function ripSprite(_offset:Int, _width:Int, _height:Int):Picture
+	{
+		var result = GBSprite.decompress(_offset);
+		return Export.spritesToPicture(result, _width, _height);
 	}
 }

@@ -34,6 +34,10 @@ class RomRipper
 		
 		new PokemonSprite();
 		
+		//new TrainerSprites();
+		
+		//new TilesetSprites();
+		
 		new PaletteBuilder();
 	}
 	

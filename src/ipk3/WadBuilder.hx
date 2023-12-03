@@ -52,6 +52,7 @@ class WadBuilder
 	
 	public static function zipwad()
 	{
-		ZipManager.compress('./wad', './gzdoom/covalent.pk3');
+		if (!Main.WADONLY) ZipManager.compress('./wad', './gzdoom/covalent.pk3');
+		else ZipManager.compress('./wad', './covalent.pk3');
 	}
 }
