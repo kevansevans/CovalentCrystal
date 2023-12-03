@@ -34,6 +34,11 @@ class PaletteBuilder
 				translations += '"2:2=[${rgbConversion(palette.normal.indexC.R)}, ${rgbConversion(palette.normal.indexC.G)}, ${rgbConversion(palette.normal.indexC.B)}]:[${rgbConversion(palette.normal.indexC.R)}, ${rgbConversion(palette.normal.indexC.G)}, ${rgbConversion(palette.normal.indexC.B)}]", ';
 				translations += '"3:3=[0, 0, 0]:[0, 0, 0]", ';
 				translations += '"4:4=[255, 255, 255]:[255, 255, 255]"\n';
+				
+				translations += '${baseinfo.name}Shiny = "1:1=[${rgbConversion(palette.shiny.indexB.R)}, ${rgbConversion(palette.shiny.indexB.G)}, ${rgbConversion(palette.shiny.indexB.B)}]:[${rgbConversion(palette.shiny.indexB.R)}, ${rgbConversion(palette.shiny.indexB.G)}, ${rgbConversion(palette.shiny.indexB.B)}]", ';
+				translations += '"2:2=[${rgbConversion(palette.shiny.indexC.R)}, ${rgbConversion(palette.shiny.indexC.G)}, ${rgbConversion(palette.shiny.indexC.B)}]:[${rgbConversion(palette.shiny.indexC.R)}, ${rgbConversion(palette.shiny.indexC.G)}, ${rgbConversion(palette.shiny.indexC.B)}]", ';
+				translations += '"3:3=[0, 0, 0]:[0, 0, 0]", ';
+				translations += '"4:4=[255, 255, 255]:[255, 255, 255]"\n';
 			}
 		}
 		
