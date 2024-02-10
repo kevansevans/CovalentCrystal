@@ -13,8 +13,6 @@ import doom.EdNumBuilder;
 import doom.PatchBuilder;
 import doom.ZScriptBuilder;
 import rom.RomRipper;
-import setup.GZDoom;
-import setup.Freedoom;
 
 /**
  * ...
@@ -37,9 +35,6 @@ import setup.Freedoom;
 class Main 
 {
 	public static inline var GAMEVERSION:String = "0.0.1";
-	
-	public static inline var GZDIR:String = 'gzdoom';
-	public static inline var VKDIR:String = 'vkdoom';
 	
 	public static var USERCONFIG:Userconfig;
 	public static var SYSTEM:String;
@@ -68,26 +63,8 @@ class Main
 		if (!FileSystem.exists('./userconfig.json')) createUserProfile();
 		else loadUserProfile();
 		
-		parseArgs(Sys.args());
-		
 		verifyProfile();
 		
-		if (!USERCONFIG.sourceport || REPAIR) 
-		{
-			if (!WADONLY)
-			{
-				Sys.println('Downloading latest GZDoom source port...');
-				GZDoom.download();
-			}
-		}
-		if (!USERCONFIG.freedoom || REPAIR)
-		{
-			if (!WADONLY)
-			{
-				Sys.println('Downloading latest Freedoom...');
-				Freedoom.download();
-			}
-		}
 		if (!USERCONFIG.romextracted || REPAIR) 
 		{
 			Sys.println('Unpackaging assets...');
@@ -118,9 +95,13 @@ class Main
 	
 	public function new()
 	{
-		if (USERCONFIG.autostart && !WADONLY) {
-			Sys.println('Launching!');
-			launchGame();
+		
+		while (true)
+		{
+			Sys.println('Finished!');
+			#if debug
+			Sys.println('For better or for worse...');
+			#end
 		}
 		
 		Sys.exit(0);
@@ -162,12 +143,6 @@ class Main
 		error(ISSUE);
 	}
 	
-	static function launchGame() 
-	{
-		Sys.setCwd(VKDOOM == true ? VKDIR : GZDIR);
-		Sys.command('${VKDOOM ? VKDIR : GZDIR} -File covalent.pk3 -IWAD freedoom2.wad -warp 1');
-	}
-	
 	static function loadUserProfile() 
 	{
 		var input = File.getBytes('./userconfig.json');
@@ -181,11 +156,7 @@ class Main
 		
 		var config:Userconfig =
 		{
-			autostart : true,
 			romextracted : false,
-			sourceport : false,
-			freedoom : false,
-			usevkdoom : false
 		}
 		
 		USERCONFIG = config;
@@ -200,47 +171,12 @@ class Main
 		#else
 		if (!FileSystem.exists('./GZDoom/covalent.pk3') || REPAIR) USERCONFIG.romextracted = false;
 		#end
-		
-		if (!FileSystem.exists('./gzdoom/gzdoom.pk3') || REPAIR) USERCONFIG.sourceport = false;
-		if (!FileSystem.exists('./gzdoom/freedoom2.wad') || REPAIR) USERCONFIG.freedoom = false;
 	}
 	
 	public static function saveConfig()
 	{
 		var json = Json.stringify(USERCONFIG);
 		writeFile('./userconfig.json', Bytes.ofString(json));
-	}
-	
-	public static function parseArgs(_args:Array<String>)
-	{
-		if (_args.length == 0) return;
-		
-		for (arg in _args)
-		{
-			switch (arg.toUpperCase())
-			{
-				case '-VERBOSE':
-					VERBOSE = true;
-					Sys.println('Verbose debugging enabled, this will take longer!');
-				case '-NOAUTOSTART':
-					AUTOSTART = false;
-				case '-VKDOOM':
-					var os:String = Sys.systemName();
-					if (os.toUpperCase() != "WINDOWS" && !IGNOREOS)
-					{
-						ISSUE = "VKDoom is currently a windows only download. Use the command -IGNOREOS if a native build is present in ./vkdoom";
-						error(ISSUE);
-					}
-					VKDOOM = true;
-					USERCONFIG.usevkdoom = true;
-				case '-REPAIR':
-					REPAIR = true;
-				case '-WADONLY':
-					WADONLY = true;
-				default:
-					Sys.println('Unrecognized command: ${arg}!');
-			}
-		}
 	}
 	
 	public static function writeFile(_path:String, _data:Bytes)
@@ -262,9 +198,5 @@ enum abstract CrystalHashes(String) from String to String
 
 typedef Userconfig =
 {
-	var autostart:Bool;
 	var romextracted:Bool;
-	var sourceport:Bool;
-	var freedoom:Bool;
-	var usevkdoom:Bool;
 }
