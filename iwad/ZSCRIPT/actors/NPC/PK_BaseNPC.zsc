@@ -1,5 +1,7 @@
 Class PK_BaseNPC : PK_BaseActor
 {
+	string user_dialogkey;
+
 	Default
 	{
 		Radius 8;
