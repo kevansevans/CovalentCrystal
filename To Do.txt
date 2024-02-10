@@ -5,8 +5,22 @@ Find and rip map palettes
 Pokemon animations: https://pret.github.io/pokecrystal/pic_animations.html
 
 work on player avatar
+	- Movement doesn't work well with omnidirectional input
+	- Work in traditional RPG cardinal movement
 
 research how to rip sounds and music
 
-work on storing trainer data in some form
+Text decoding and unicode support work around.
+	-This is more of a Haxe problem. Doesn't like compiling with Unicode characters in string
+	-Possible solution: Write bytes to data instead of to string
+	-Possible solution: Use characters that are unused for special characters. Stuff like @ # $ % ^ & * can be used
+		-$ can definitely be used for the pokedollar symbol to make that easier
+		
+NPC ZScript.
+	- Take advantage of "user_[variable]" UDMF API for sending data to NPC actors
+	- Use LANGUAGE lump to store specific NPC data, that way unique actors no longer need to be made per map
+		- Store dialogue
+		- Special scripts
+		- Pokemon teams
+		- Using LANGUAGE also means translations to other languages are possible! Bonus!
 	-Add friends of crimes as easter eggs in battle tower as trainers
