@@ -2,6 +2,7 @@ Gameinfo
 {
 	DimAmount = 0
 	PlayerClasses = "PK_Player"
+	EventHandlers = "PK_PlayerController"
 }
 
 map MAP01 "Debug Room"

@@ -1,0 +1,7 @@
+enum PK_FaceDir
+{
+	PK_North,
+	PK_East,
+	PK_South,
+	PK_West
+}

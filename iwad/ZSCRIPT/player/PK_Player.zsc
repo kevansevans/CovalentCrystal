@@ -3,10 +3,282 @@ class PK_Player : PlayerPawn
 	Default
 	{
 		Player.DisplayName "Some 11 year old child, where's this kid's father figure?";
+		
+		+ForceXYBillboard;
+		
+		Player.ForwardMove 0;
+		Player.SideMove 0;
+		
+		PK_Player.FaceDir PK_South;
 	}
 	
-	override void BeginPlay()
+	Actor pcamera;
+	
+	PK_FaceDir FaceDir;
+	property FaceDir: FaceDir;
+	
+	override void PostBeginPlay()
 	{
-		Super.BeginPlay();
+		Super.PostBeginPlay();
+		
+		pcamera = Actor.spawn('PK_PlayerCamera', self.pos);
+		pcamera.target = self;
+		pcamera.pitch = 35;
+		setCamera(pcamera);
+	}
+	
+	override void tick()
+	{
+		Super.tick();
+		
+		updateposition();
+		updatecamera();
+	}
+	
+	void updatecamera()
+	{
+		if (!pcamera) return;
+		
+		FLineTraceData c_shot;
+		self.LineTrace(90, -96, 35, 0, 8, 0, 0, c_shot);
+		
+		pcamera.setOrigin(c_shot.HitLocation, true);
+		pcamera.A_FaceTarget();
+	}
+	
+	const movespeed = 2;
+	const bikespeed = 4;
+	
+	int movetics;
+	bool turndelay;
+	
+	void move(PK_FaceDir _dir)
+	{
+		if (turndelay)
+		{
+			turndelay = false;
+			return;
+		}
+	
+		if (movetics) return;
+	
+		if (_dir != facedir)
+		{
+			facedir = _dir;
+			turndelay = true;
+			return;
+		}
+		
+		if (!movetics) movetics = 8;
+	}
+	
+	void updateposition()
+	{
+		if (!movetics) return;
+	
+		let pos = self.pos;
+		
+		switch (facedir)
+		{
+			case PK_North:
+				pos.y += movespeed;
+				self.setOrigin(pos, true);
+				break;
+			case PK_South:
+				pos.y -= movespeed;
+				self.setOrigin(pos, true);
+				break;
+			case PK_West:
+				pos.x -= movespeed;
+				self.setOrigin(pos, true);
+				break;
+			case PK_East:
+				pos.x += movespeed;
+				self.setOrigin(pos, true);
+				break;
+			default:
+				break;
+		}
+		
+		--movetics;
+		
+		if (movetics == 0)
+		{
+			let pos = self.pos;
+			
+			pos.x = round(pos.x);
+			pos.y = round(pos.y);
+		}
+	}
+	
+	bool stride;
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay A_FaceIdleSprite();
+			loop;
+			
+		Spawn.FaceNorth:
+			O001 A 1 A_FaceMovingSprite();
+			goto Spawn;
+			
+		Spawn.FaceSouth:
+			O000 A 1 A_FaceMovingSprite();
+			goto spawn;
+			
+		Spawn.FaceWest:
+			O002 A 1 A_FaceMovingSprite();
+			goto spawn;
+		
+		Spawn.FaceEast:
+			O002 A 1 A_FaceMovingSprite();
+			goto spawn;
+			
+		Step.FaceNorth:
+			O004 A 4;
+			goto Spawn;
+			
+		Step.FaceSouth:
+			O003 A 4;
+			goto spawn;
+			
+		Step.FaceWest:
+			O005 A 4;
+			goto spawn;
+		
+		Step.FaceEast:
+			O005 A 4;
+			goto spawn;
+			
+	}
+	
+	state A_FaceIdleSprite()
+	{
+		self.scale.x = 1;
+	
+		switch (facedir)
+		{
+			case PK_North:
+				return resolveState('Spawn.FaceNorth');
+			case PK_South:
+				return resolveState('Spawn.FaceSouth');
+			case PK_West:
+				return resolveState('Spawn.FaceWest');
+			case PK_East:
+				self.scale.x = -1;
+				return resolveState('Spawn.FaceEast');
+		}
+		
+		return resolveState(null);
+	}
+	
+	State A_FaceMovingSprite()
+	{
+		if (movetics >= 2 && movetics <= 5)
+		{
+			switch (facedir)
+			{
+				case PK_North:
+					stride = !stride;
+					self.scale.x = stride ? -1 : 1;
+					return resolveState('Step.FaceNorth');
+					
+				case PK_South:
+					stride = !stride;
+					self.scale.x = stride ? -1 : 1;
+					return resolveState('Step.FaceSouth');
+					
+				case PK_West:
+					return resolveState('Step.FaceWest');
+					
+				case PK_East:
+					self.scale.x = -1;
+					return resolveState('Step.FaceEast');
+			}
+		}
+		
+		return resolveState(null);
+	}
+}
+
+class PK_PlayerCamera : Actor
+{
+	Default
+	{
+		+NoInteraction;
+		+NoGravity;
+	}
+}
+
+class PK_PlayerController : EventHandler
+{
+	PK_Player player;
+	ui Dictionary inputs;
+	bool inputdelay;
+	
+	override void onRegister()
+	{
+		console.printf('Player controller registered');
+	}
+	
+	override void WorldLoaded(WorldEvent _event)
+	{
+		player = PK_Player(players[consoleplayer].mo);
+	}
+	
+	override bool InputProcess(InputEvent _event)
+	{
+		if (!inputs) inputs = Dictionary.create();
+		
+		string bind = Bindings.getBinding(_event.KeyScan);
+		console.printf(bind);
+		
+		switch (_event.type)
+		{
+			case InputEvent.Type_KeyDown:
+				inputs.insert(bind, "true");
+				break;
+			case InputEvent.Type_KeyUp:
+				inputs.insert(bind, "false");
+				break;
+		}
+	
+		return true;
+	}
+	
+	override void UiTick()
+	{
+		if (!inputs) return;
+		if (!player) return;
+		
+		if (inputs.at("+forward") == "true")
+		{
+			SendNetworkEvent("MOVE", PK_NORTH);
+		}
+		else if (inputs.at("+back") == "true")
+		{
+			SendNetworkEvent("MOVE", PK_SOUTH);
+		}
+		else if (inputs.at("+moveleft") == "true")
+		{
+			SendNetworkEvent("MOVE", PK_West);
+		}
+		else if (inputs.at("+moveright") == "true")
+		{
+			SendNetworkEvent("MOVE", PK_East);
+		}
+	}
+	
+	override void NetworkProcess(ConsoleEvent _event)
+	{
+		switch (int(name(_event.name)))
+		{
+			case int('MOVE'):
+				player.move(_event.args[0]);
+				break;
+			Default:
+				break;
+		}
 	}
 }

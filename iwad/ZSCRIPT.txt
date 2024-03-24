@@ -4,5 +4,7 @@ version "4.10"
 #include "ZSCRIPT/actors/PK_BasePokemon.zsc"
 #include "ZSCRIPT/actors/Pokemon/PK_Unown.zsc"
 
+#include "ZSCRIPT/enums/PK_FaceDir.zsc"
+
 #include "zscript/player/PK_Player.zsc"
 
