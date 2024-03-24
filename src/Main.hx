@@ -52,6 +52,33 @@ class Main
 	
 	static function main()
 	{
+		new Main();
+	}
+	
+	public function new()
+	{
+		initBuild();
+		
+		Sys.println('Finished!');
+		
+		#if debug
+		Sys.println('For better or for worse...');
+		
+		Sys.command('gzdoom -file covalent.pk3 -warp 1');
+		
+		while (true)
+		{
+			var reset = Sys.stdin().readLine();
+			initBuild(true);
+		}
+		
+		#end
+		
+		Sys.exit(0);
+	}
+	
+	public static function initBuild(_justRezip:Bool = false)
+	{
 		ManualAssets.buildZipAssets();
 		
 		Sys.println("////////////////////");
@@ -70,13 +97,19 @@ class Main
 			Sys.println('Unpackaging assets...');
 			WadBuilder.assemble();
 			
-			Sys.println('Extracting rom assets...');
-			loadRom();
-			new RomRipper(ROM);
+			if (!_justRezip)
+			{
+				Sys.println('Extracting rom assets...');
+				loadRom();
+				new RomRipper(ROM);
+				USERCONFIG.romextracted = true;
+			}
+			
+			Sys.println('Constructing GZDoom data...');
+			
 			new ZScriptBuilder();
 			new EdNumBuilder();
 			new PatchBuilder();
-			USERCONFIG.romextracted = true;
 			
 			Sys.println('Zipping wad...');
 			WadBuilder.zipwad();
