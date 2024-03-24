@@ -1,2 +1,3 @@
 STARTUPTITLE = "Pokemon: Crystal Version"
 STARTUPCOLORS = "CF9FFF", "CCCCFF"
+IWAD = "DOOM2.WAD"
