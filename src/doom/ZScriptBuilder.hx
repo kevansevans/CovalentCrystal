@@ -35,9 +35,9 @@ class ZScriptBuilder
 			var actor = new OverworldActor(i);
 			
 			var zfile = actor.toZFile(i);
-			var out = File.write('./wad/ZSCRIPT/actors/NPC/PK_OV${actor.info.name}.zsc');
+			var out = File.write('./wad/ZSCRIPT/actors/NPC/PK_${actor.info.name}NPC.zsc');
 			out.write(Bytes.ofString(zfile));
-			include += '#include "ZSCRIPT/actors/NPC/PK_OV${actor.info.name}.zsc"\n';
+			include += '#include "ZSCRIPT/actors/NPC/PK_${actor.info.name}NPC.zsc"\n';
 			out.close();
 		}
 		
@@ -193,7 +193,7 @@ class OverworldActor
 		var lumps = FileSystem.readDirectory('./wad/SPRITES/overworld');
 		
 		var output:String = '';
-		output += 'Class PK_OV${info.name} : PK_BaseNPC\n';
+		output += 'Class PK_${info.name}NPC : PK_BaseNPC\n';
 		output += '{\n';
 		output += '\tDefault\n';
 		output += '\t{\n';
