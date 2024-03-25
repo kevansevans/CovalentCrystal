@@ -50,26 +50,62 @@ class PK_Player : PlayerPawn
 	const bikespeed = 4;
 	
 	int movetics;
-	bool turndelay;
+	int movedelay;
 	
 	void move(PK_FaceDir _dir)
 	{
-		if (turndelay)
-		{
-			turndelay = false;
-			return;
-		}
-	
 		if (movetics) return;
 	
-		if (_dir != facedir)
+		bool delay;
+		
+		if (movedelay == 0 && _dir != facedir)
 		{
 			facedir = _dir;
-			turndelay = true;
-			return;
+		}
+	
+		if (movedelay <= 1)
+		{
+			if (movedelay == 0) delay = true;
+			movedelay = 2;
 		}
 		
-		if (!movetics) movetics = 8;
+		bool valid = A_BumpCheck(_dir);
+		if (!valid) return;
+		
+		if (delay) return;
+		
+		if (!movetics) 
+		{
+			movetics = 8;
+			facedir = _dir;
+		}
+	}
+	
+	bool A_BumpCheck(PK_FaceDir _dir)
+	{
+		FLineTraceData linecheck;
+		int angle = 0;
+		
+		switch (_dir)
+		{
+			case PK_North:
+				angle = 90;
+				break;
+			case PK_East:
+				angle = 0;
+				break;
+			case PK_South:
+				angle = 270;
+				break;
+			case PK_West:
+				angle = 180;
+				break;
+		}
+		
+		self.linetrace(angle, 16, 0, TRF_ALLACTORS, 8, 0, 0, linecheck);
+		
+		if (linecheck.hitActor || linecheck.hitline) return false;
+		return true;
 	}
 	
 	void updateposition()
@@ -102,13 +138,15 @@ class PK_Player : PlayerPawn
 		
 		--movetics;
 		
-		if (movetics == 0)
+		if (movetics == 0 && movedelay == 0)
 		{
 			let pos = self.pos;
 			
 			pos.x = round(pos.x);
 			pos.y = round(pos.y);
 		}
+		
+		if (movedelay) --movedelay;
 	}
 	
 	bool stride;
