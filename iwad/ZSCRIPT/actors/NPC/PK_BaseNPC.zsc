@@ -6,5 +6,8 @@ Class PK_BaseNPC : PK_BaseActor
 	{
 		Radius 8;
 		Height 16;
+		
+		+Solid;
+		+ForceXYBillboard;
 	}
 }

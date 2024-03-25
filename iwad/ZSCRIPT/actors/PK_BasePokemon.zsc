@@ -28,6 +28,8 @@ Class PK_BasePokemon : Actor
 	
 	default
 	{
+		+ForceXYBillboard;
+	
 		PK_BasePokemon.FaceMode 0;
 		PK_BasePokemon.typeA NoType;
 		PK_BasePokemon.typeB NoType;
