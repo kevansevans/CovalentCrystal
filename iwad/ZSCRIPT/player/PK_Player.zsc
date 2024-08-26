@@ -52,6 +52,8 @@ class PK_Player : PlayerPawn
 	int movetics;
 	int movedelay;
 	
+	bool bump;
+	
 	void move(PK_FaceDir _dir)
 	{
 		if (movetics) return;
@@ -81,9 +83,61 @@ class PK_Player : PlayerPawn
 		}
 	}
 	
+	void A_Interact()
+	{
+		FLineTraceData linecheck;
+		raycast(facedir, linecheck);
+		
+		if (!linecheck.hitactor) return;
+		if (!(linecheck.hitactor is "PK_BaseNPC")) return;
+		
+		let npc = PK_BaseNPC(linecheck.hitactor);
+		if (!npc)
+		{
+			console.printf('huh?');
+			return;
+		}
+		
+		switch (facedir)
+		{
+			case PK_North:
+				npc.A_SpriteFace(PK_South);
+				break;
+			case PK_West:
+				npc.A_SpriteFace(PK_West);
+				break;
+			case PK_South:
+				npc.A_SpriteFace(PK_North);
+				break;
+			case PK_East:
+				npc.A_SpriteFace(PK_East);
+				break;
+		}
+		
+		if (npc.user_dialogkey)
+		{
+			string text = Stringtable.Localize(npc.user_dialogkey);
+			Dictionary dialog = Dictionary.fromString(text);
+			int length = dialog.at("length").toInt(10);
+			
+			for (int i = 0; i < length; ++i)
+			{
+				console.printf(dialog.at("line_" .. i));
+			}
+		}
+	}
+	
 	bool A_BumpCheck(PK_FaceDir _dir)
 	{
 		FLineTraceData linecheck;
+		raycast(_dir, linecheck);
+		
+		if (linecheck.hitActor || linecheck.hitline) return false;
+		return true;
+	}
+	
+	void raycast(PK_FaceDir _dir, FLineTraceData _linecheck)
+	{
 		int angle = 0;
 		
 		switch (_dir)
@@ -102,10 +156,7 @@ class PK_Player : PlayerPawn
 				break;
 		}
 		
-		self.linetrace(angle, 16, 0, TRF_ALLACTORS, 8, 0, 0, linecheck);
-		
-		if (linecheck.hitActor || linecheck.hitline) return false;
-		return true;
+		self.linetrace(angle, 16, 0, TRF_ALLACTORS, 8, 0, 0, _linecheck);
 	}
 	
 	void updateposition()
@@ -270,7 +321,9 @@ class PK_PlayerController : EventHandler
 		if (!inputs) inputs = Dictionary.create();
 		
 		string bind = Bindings.getBinding(_event.KeyScan);
-		console.printf(bind);
+		//console.printf(bind);
+		
+		if (bind ~== "toggleconsole") return false;
 		
 		switch (_event.type)
 		{
@@ -306,6 +359,10 @@ class PK_PlayerController : EventHandler
 		{
 			SendNetworkEvent("MOVE", PK_East);
 		}
+		else if (inputs.at("+use") == "true")
+		{
+			SendNetworkEvent("USE");
+		}
 	}
 	
 	override void NetworkProcess(ConsoleEvent _event)
@@ -314,6 +371,9 @@ class PK_PlayerController : EventHandler
 		{
 			case int('MOVE'):
 				player.move(_event.args[0]);
+				break;
+			case int('USE'):
+				player.A_Interact();
 				break;
 			Default:
 				break;

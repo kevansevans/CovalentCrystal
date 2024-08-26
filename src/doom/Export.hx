@@ -66,7 +66,7 @@ class Export
 		File.saveBytes(_path, picturebytes.getBytes());
 	}
 	
-	public static function pixelsToPosts(_pixels:Array<Int>, _xoffset:Int):Array<Post>
+	public static function pixelsToPosts(_pixels:Array<Int>, _xoffset:Int, _zeroIsAlpha:Bool = true):Array<Post>
 	{
 		var posts:Array<Post> = [];
 		
@@ -74,6 +74,14 @@ class Export
 		var offset:Int = 0;
 		var alphoffset:Int = 0;
 		var data:Array<Int> = [];
+		
+		if (!_zeroIsAlpha)
+		{
+			for (i in 0..._pixels.length)
+			{
+				if (_pixels[i] == 0) _pixels[i] = 5;
+			}
+		}
 		
 		for (pixel in _pixels)
 		{
@@ -129,10 +137,12 @@ class Export
 		return posts;
 	}
 	
-	public static function spritesToPicture(_data:Array<Int>, _width:Int, _height:Int)
+	public static function spritesToPicture(_data:Array<Int>, _width:Int, _height:Int, _zeroIsAlpha:Bool = true)
 	{
 		var posts:Array<Post> = [];
 		var sprites:Array<GBSprite> = GBSprite.spritesFromData(_data);
+		
+		if (!_zeroIsAlpha) trace(sprites.length);
 		
 		var index:Int = _height * -1;
 		
@@ -149,12 +159,17 @@ class Export
 			for (row in 0..._width)
 			{
 				var sprite = sprites[index + row];
-				if (sprite == null) sprite = GBSprite.emptySprite;
+				
+				if (sprite == null) 
+				{
+					sprite = GBSprite.emptySprite;
+				}
+				
 				var strip = sprite.getVerticalStrip(col % 8);
 				for (pixel in strip) column.push(pixel);
 			}
 			
-			var items:Array<Post> = Export.pixelsToPosts(column, col);
+			var items:Array<Post> = Export.pixelsToPosts(column, col, _zeroIsAlpha);
 			for (item in items) posts.push(item);
 		}
 		
@@ -168,5 +183,43 @@ class Export
 		}
 		
 		return picture;
+	}
+	
+	public static function spritesToPictureArray(_data:Array<Int>):Array<Picture>
+	{
+		var pictures:Array<Picture> = [];
+		var sprites:Array<GBSprite> = GBSprite.spritesFromData(_data, true);
+		
+		for (sprite in sprites)
+		{
+			var posts:Array<Post> = [];
+			
+			for (col in 0...8)
+			{
+				var column:Array<Int> = [];
+			
+				for (row in 0...8)
+				{
+					var strip = sprite.getVerticalStrip(col % 8);
+					for (pixel in strip) column.push(pixel);
+				}
+				
+				var items:Array<Post> = Export.pixelsToPosts(column, col);
+				for (item in items) posts.push(item);
+			}
+		
+			var picture:Picture =
+			{
+				width : 8,
+				height : 8,
+				xoffset : 4,
+				yoffset : 8,
+				posts : posts
+			}
+			
+			pictures.push(picture);
+		}
+		
+		return pictures;
 	}
 }

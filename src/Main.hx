@@ -1,8 +1,10 @@
 package;
 
+import doom.LanguageBuilder;
 import haxe.crypto.Md5;
 import haxe.io.Bytes;
 import haxe.Json;
+import rom.TextAndDialogue;
 import sys.io.File;
 import sys.FileSystem;
 
@@ -110,6 +112,7 @@ class Main
 			new ZScriptBuilder();
 			new EdNumBuilder();
 			new PatchBuilder();
+			new LanguageBuilder();
 			
 			Sys.println('Zipping wad...');
 			WadBuilder.zipwad();
@@ -122,22 +125,6 @@ class Main
 		saveConfig();
 		
 		error(ISSUE);
-		
-		new Main();
-	}
-	
-	public function new()
-	{
-		
-		while (true)
-		{
-			Sys.println('Finished!');
-			#if debug
-			Sys.println('For better or for worse...');
-			#end
-		}
-		
-		Sys.exit(0);
 	}
 	
 	public static function error(_error:Null<String>)

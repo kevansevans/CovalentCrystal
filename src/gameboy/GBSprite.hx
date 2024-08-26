@@ -49,7 +49,10 @@ class GBSprite
 	static function get_emptySprite():GBSprite 
 	{
 		var data:Array<Int> = [];
-		for (i in 0...64) data.push(5);
+		for (i in 0...64) 
+		{
+			data.push(i % 2 == 0 ? 120 : 210);
+		}
 		
 		return new GBSprite(data);
 	}
@@ -66,13 +69,19 @@ class GBSprite
 		return result;
 	}
 	
-	public static function spritesFromData(_2bpp:Array<Int>, ?_pos:PosInfos):Array<GBSprite>
+	public static function spritesFromData(_2bpp:Array<Int>, _alpha:Bool = false, ?_pos:PosInfos):Array<GBSprite>
 	{
 		//A interlaced GB sprite is 16 bytes. Each row is 2 bytes long. If not divisible by 16, sprite data is incomplete.
 		if (_2bpp.length % 16 != 0) throw 'provided 2bpp data is not of expected size! ${_2bpp.length}, ${_2bpp.length % 16} \n' + _pos;
 		
 		var numsprites:Int = Std.int(_2bpp.length / 16);
 		var data:Array<Int> = unmask(_2bpp);
+		
+		if (_alpha)
+		{
+			for (i in 0...data.length) data[i] += 1;
+		}
+		
 		var sprites:Array<GBSprite> = [];
 		
 		for (sp in 0...numsprites)

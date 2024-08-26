@@ -36,9 +36,13 @@ class RomRipper
 		
 		//new TrainerSprites();
 		
-		//new TilesetSprites();
+		new TilesetSprites();
 		
 		new PaletteBuilder();
+		
+		new TextAndDialogue();
+		
+		new FontSprites();
 	}
 	
 	public static function getPokemonData(_dexnum:Int):PokemonData

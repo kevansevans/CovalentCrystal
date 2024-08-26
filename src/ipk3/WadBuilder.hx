@@ -23,6 +23,7 @@ class WadBuilder
 		FileSystem.createDirectory('./wad/SPRITES/pokemon');
 		FileSystem.createDirectory('./wad/SPRITES/overworld');
 		FileSystem.createDirectory('./wad/SPRITES/trainer');
+		FileSystem.createDirectory('./wad/TEXTURES');
 		FileSystem.createDirectory('./wad/ZSCRIPT/actors');
 		FileSystem.createDirectory('./wad/ZSCRIPT/actors/pokemon');
 		FileSystem.createDirectory('./wad/ZSCRIPT/actors/NPC');
@@ -52,7 +53,7 @@ class WadBuilder
 	
 	public static function zipwad()
 	{
-		if (!Main.WADONLY) ZipManager.compress('./wad', './gzdoom/covalent.pk3');
+		if (!Main.WADONLY) ZipManager.compress('./wad', './covalent.pk3');
 		else ZipManager.compress('./wad', './covalent.pk3');
 	}
 }

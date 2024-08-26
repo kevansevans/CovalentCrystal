@@ -1,9 +1,19 @@
 Class PK_BaseActor : Actor
 {
 	int FaceMode; //0 for always faces, 1 for has 4 directions
+	
+	PK_FaceDir facedir;
+	property FaceDir: FaceDir;
+	
 	string FaceSouth;
 	string FaceNorth;
 	string FaceEastWest;
+	
+	bool user_trainer;
+	
+	bool user_rotating_left;
+	bool user_rotating_right;
+	
 	property FaceMode: FaceMode;
 	property FaceSouth: FaceSouth;
 	property FaceNorth: FaceNorth;
@@ -12,51 +22,89 @@ Class PK_BaseActor : Actor
 	Default
 	{
 		PK_BaseActor.FaceMode 1;
+		PK_BaseActor.FaceDir PK_South;
 		PK_BaseActor.FaceSouth "O000";
 		PK_BaseActor.FaceNorth "O001";
 		PK_BaseActor.FaceEastWest "O002";
 	}
 	
+	override void BeginPlay()
+	{
+		super.BeginPlay();
+	}
+	
+	override void PostBeginPlay()
+	{
+		Super.postBeginPlay();
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////////
+		//Critical checks to make sure the mapper doesn't mess up!
+		////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		if (user_rotating_left == true && user_rotating_right == true) ThrowAbortException("NPC's can't be rotating left and right at the same time! Please correct: " .. self.getClassName() .. " at " .. self.pos);
+		
+		A_SpriteFace();
+	}
+	
 	override void Tick()
 	{
 		Super.Tick();
-		
-		updateFacingDirection();
 	}
 	
-	void updateFacingDirection()
+	//0 = clockwise
+	//1 = counter clockwise
+	void A_Rotate(bool _clockwise = true)
 	{
-		if (Self.FaceMode == 0)
+		switch (facedir)
 		{
-			self.sprite = GetSpriteIndex(Self.FaceSouth);
-			self.frame = 0;
-			return;
-		}
-	
-		let player = players[consoleplayer].mo;
-		let dir = DeltaAngle(self.angle, angleTo(player));
-		if (dir < 0) dir += 360;
-	
-		self.scale.x = 1;
-		if (dir <= 45 || dir > 315)
-		{
-			self.sprite = GetSpriteIndex(Self.FaceSouth);
-		}
-		else if (dir > 45 && dir <= 135)
-		{
-			self.sprite = GetSpriteIndex(Self.FaceEastWest);
-		}
-		else if (dir > 135 && dir <= 225)
-		{
-			self.sprite = GetSpriteIndex(Self.FaceNorth);
-		}
-		else if (dir > 225 && dir <= 315)
-		{
-			self.scale.x = -1;
-			self.sprite = GetSpriteIndex(Self.FaceEastWest);
+			case PK_North:
+				if (_clockwise) facedir = PK_West;
+				else facedir = PK_East;
+				break;
+			case PK_West:
+				if (_clockwise) facedir = PK_South;
+				else facedir = PK_North;
+				break;
+			case PK_South:
+				if (_clockwise) facedir = PK_East;
+				else facedir = PK_West;
+				break;
+			case PK_East:
+				if (_clockwise) facedir = PK_North;
+				else facedir = PK_South;
+				break;
 		}
 		
-		self.frame = 0;
+		A_SpriteFace(facedir);
+	}
+	
+	void A_SpriteFace(PK_FaceDir _dir = PK_South)
+	{
+		if (!facemode)
+		{
+			self.sprite = GetSpriteIndex(self.facesouth);
+			return;
+		}
+		
+		facedir = _dir;
+		
+		self.scale.x = 1;
+		switch(facedir)
+		{
+			case PK_North:
+				self.sprite = GetSpriteIndex(self.facenorth);
+				break;
+			case PK_West:
+				self.scale.x = -1; //intentional fall through
+				self.sprite = GetSpriteIndex(self.faceeastwest);;
+				break;
+			case PK_East:
+				self.sprite = GetSpriteIndex(self.faceeastwest);
+				break;
+			case PK_South:
+				self.sprite = GetSpriteIndex(self.facesouth);
+				break;
+		}
 	}
 	
 	States
